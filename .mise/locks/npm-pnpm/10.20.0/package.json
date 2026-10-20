@@ -2,6 +2,6 @@
   "name": "mise-npm-install",
   "private": true,
   "dependencies": {
-    "pnpm": "10.20.0"
+    "pnpm": "10.34.5"
   }
 }
