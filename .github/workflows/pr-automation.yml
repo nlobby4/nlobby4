@@ -1,0 +1,130 @@
+# --------------------------------------------------
+# PR Automation workflow.
+#
+# Handles pull request metadata automation requiring
+# write permissions. pull_request_target uses trusted
+# workflow code from the base repository default branch,
+# including for PRs opened from forks. It can access
+# referenced base-repository secrets; environment secrets
+# still require the environment and its protection rules.
+# Ordinary fork pull_request runs lack those secrets.
+# This workflow uses job-scoped GITHUB_TOKEN permissions
+# and does not request the auto-chan private key.
+#
+# SECURITY: No job in this workflow may checkout or
+# execute code from the pull request branch. Doing so
+# could expose referenced secrets and write authority.
+# Fork-run approval is not the boundary for this event.
+#
+# For more information please see:
+# https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request_target
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../../schemas/github-workflow.schema.json
+
+name: PR Automation
+
+on:
+  # zizmor: ignore[dangerous-triggers] This workflow does not check out or
+  # execute code from the pull-request head; doing so invalidates this exception.
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - edited
+      - synchronize
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+# Deny all by default, jobs declare their own permissions as needed
+permissions: {}
+
+jobs:
+  # --------------------------------------------------
+  # Labeler - applies labels to pull requests based
+  # on branch name, title, and changed files.
+  # --------------------------------------------------
+  labeler:
+    name: labeler
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/labeler@bf12e9b00b37c5c0ca2b87b79b2daf7891dbda13
+        with:
+          configuration-path: .github/labeler.yml
+          sync-labels: true
+
+  # --------------------------------------------------
+  # Dependency review - checks for known vulnerabilities
+  # in dependency changes introduced by the pull request.
+  # --------------------------------------------------
+  dependency-review:
+    name: dependency-review
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294
+        with:
+          head-ref: ${{ github.event.pull_request.head.sha }}
+          base-ref: ${{ github.event.pull_request.base.sha }}
+          comment-summary-in-pr: always
+
+  # --------------------------------------------------
+  # PR title lint - validates the pull request title
+  # against conventional commits specification.
+  # The PR title becomes the squash merge commit message.
+  # --------------------------------------------------
+  pr-title:
+    name: pr-title
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      pull-requests: read
+    steps:
+      - uses: amannn/action-semantic-pull-request@48f256284bd46cdaab1048c3721360e808335d50
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            build
+            chore
+            ci
+            docs
+            feat
+            fix
+            perf
+            refactor
+            revert
+            style
+            test
+          scopes: |
+            assets
+            ci
+            deps
+            deps-dev
+            docs
+            meta
+            release
+            scripts
+            src
+            templates
+            tests
+          requireScope: false
+          validateSingleCommit: true
+          subjectPattern: ^(?![A-Z.]).+(?<!\.)$
+          subjectPatternError: |
+            The subject "{subject}" in the PR title "{title}" must start with
+            a lowercase letter and must not end with a period.

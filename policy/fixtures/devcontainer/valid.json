@@ -1,0 +1,25 @@
+{
+  "devcontainer": {
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:4.1.0": {}
+    },
+    "init": true,
+    "mounts": [
+      {
+        "source": "cache",
+        "target": "/cache",
+        "type": "volume"
+      }
+    ],
+    "remoteUser": "developer"
+  },
+  "lock": {
+    "features": {
+      "ghcr.io/devcontainers/features/docker-in-docker:4.1.0": {
+        "version": "4.1.0",
+        "integrity": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    }
+  }
+}

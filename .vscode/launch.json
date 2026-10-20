@@ -1,0 +1,58 @@
+{
+  "configurations": [
+    {
+      "name": "mise: Debug current Node file",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "mise",
+      "runtimeArgs": ["exec", "--", "node"],
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true
+    },
+    {
+      "name": "mise: Run task",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "mise run ${input:miseTask}",
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "miseTask",
+      "type": "pickString",
+      "description": "Select a mise task",
+      "options": [
+        "install",
+        "setup",
+        "doctor",
+        "health",
+        "commit",
+        "format",
+        "lint",
+        "lint:commit",
+        "test",
+        "build",
+        "audit",
+        "check",
+        "devcontainer:up",
+        "devcontainer:rebuild",
+        "devcontainer:shell",
+        "devcontainer:doctor",
+        "devcontainer:health"
+      ],
+      "default": "test"
+    }
+  ],
+  // --------------------------------------------------
+  // VS Code launch configurations for mise.
+  //
+  // Node debugging resolves the runtime through mise, ensuring that VS Code
+  // uses the version pinned in mise.toml. Task launchers run in an integrated
+  // terminal so their output and interactive prompts remain available.
+  // --------------------------------------------------
+  "version": "0.2.0"
+}

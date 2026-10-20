@@ -1,0 +1,37 @@
+# --------------------------------------------------
+# yamllint configuration file.
+#
+# yamllint checks YAML syntax, duplicate keys, indentation and other common
+# mistakes, however it does not validate application schemas.
+#
+# The repository commands use strict mode, so warnings also fail validation.
+#
+# For more information please see:
+# https://yamllint.readthedocs.io/en/stable/configuration.html
+# --------------------------------------------------
+---
+# Inherit standard YAML checks and adjust them for repository tooling
+extends: default
+
+# Root scans skip projects which are checked separately with their own config
+ignore: |
+  .generated/
+  .cache/
+  node_modules/
+  /projects/
+  /.local-work/
+  /.mise/locks/
+
+rules:
+  # Accept formatter-produced inline comments with one separating space
+  comments:
+    min-spaces-from-content: 1
+  # Accept optional document markers and formatter-managed long lines
+  document-start: disable
+  line-length: disable
+  # Require explicit boolean values without flagging workflow keys such as on
+  truthy:
+    allowed-values:
+      - "true"
+      - "false"
+    check-keys: false

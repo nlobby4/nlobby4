@@ -1,0 +1,17 @@
+# --------------------------------------------------
+# Zizmor configuration file.
+#
+# Zizmor audits GitHub Actions workflows and action definitions for
+# security issues.
+#
+# For more information please see:
+# https://docs.zizmor.sh/configuration/
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../schemas/zizmor.schema.json
+
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        "*": hash-pin

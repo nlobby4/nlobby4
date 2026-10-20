@@ -1,0 +1,15 @@
+{
+    "$schema": "../../schemas/package.schema.json",
+    "name": "@nlobby4/example",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "description": "Dependency-free project boundary harness",
+    "scripts": {
+        "test": "node --test tests/*.test.js",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
+        "lint": "eslint . --max-warnings 0",
+        "check": "pnpm run format:check && pnpm run lint && pnpm run test"
+    }
+}

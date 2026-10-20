@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "tools": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repository", "tag"],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$"
+          },
+          "tag": { "enum": ["v{version}", "{version}"] }
+        }
+      }
+    }
+  },
+  "required": ["tools"],
+  "type": "object"
+}

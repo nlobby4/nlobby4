@@ -1,0 +1,127 @@
+{
+  "schemas": {
+    "knip.schema.json": {
+      "source": "knip@6.5.0/schema.json",
+      "version": "6.5.0",
+      "sha256": "736e340b0c4da34ae5999bbc66c3c6987b8b5a181fd7c11b3b29865350f706d2",
+      "dependencies": {},
+      "globalConfig": false
+    },
+    "turbo.schema.json": {
+      "source": "turbo@2.11.7/schema.json",
+      "version": "2.11.7",
+      "sha256": "21626785d8d8e400ad08fdb2c2c09d244e49de30db467074761b384b15b8bd16",
+      "dependencies": {},
+      "globalConfig": false
+    },
+    "markdownlint-cli2.schema.json": {
+      "source": "markdownlint-cli2@0.23.2/schema/markdownlint-cli2-config-schema.json",
+      "version": "0.23.2",
+      "sha256": "b110aafdffb453fae7c76fdc3b1ef987a486ccbc47605badf67fab9d9466df9e",
+      "dependencies": {
+        "https://raw.githubusercontent.com/DavidAnson/markdownlint/v0.41.1/schema/markdownlint-config-schema.json": "500e390aaf7cdd3c2ea19acc791f43d697e35a887eabeceb7791c2efcae9a1fa"
+      },
+      "globalConfig": false
+    },
+    "editorconfig-checker.schema.json": {
+      "source": "https://raw.githubusercontent.com/editorconfig-checker/editorconfig-checker/v4.0.1/.editorconfig-checker.schema.json",
+      "version": "4.0.1",
+      "sha256": "3ecadc0488639d0125d5989b60b4771b677dbd36fb359794a65273acf024d0d1",
+      "dependencies": {
+        "https://raw.githubusercontent.com/editorconfig-checker/editorconfig-checker/v4.0.1/.editorconfig-checker.schema.json": "ba77688e6c08893e71a080fc212dd83ebdfc905651a9f54e9093fb2e3ebb3cee"
+      },
+      "globalConfig": false
+    },
+    "zizmor.schema.json": {
+      "source": "https://raw.githubusercontent.com/woodruffw/zizmor/v1.26.1/support/zizmor.schema.json",
+      "version": "1.26.1",
+      "sha256": "d28aeca12b0a6575bb6502aeeeb7c92aa8b465d709dd95de2560b4adcbb23ea5",
+      "dependencies": {
+        "https://raw.githubusercontent.com/woodruffw/zizmor/v1.26.1/support/zizmor.schema.json": "d28aeca12b0a6575bb6502aeeeb7c92aa8b465d709dd95de2560b4adcbb23ea5"
+      },
+      "globalConfig": false
+    },
+    "renovate.schema.json": {
+      "source": "https://unpkg.com/renovate@44.132.2/renovate-schema.json",
+      "version": "44.132.2",
+      "sha256": "2cbdf7ad9dbcca4c6072f1ad2a3ced22f7e92a97975c02718da78211853a3a20",
+      "dependencies": {
+        "https://unpkg.com/renovate@44.132.2/renovate-schema.json": "2cbdf7ad9dbcca4c6072f1ad2a3ced22f7e92a97975c02718da78211853a3a20"
+      },
+      "globalConfig": false
+    },
+    "renovate-global.schema.json": {
+      "source": "https://unpkg.com/renovate@44.132.2/renovate-schema.json",
+      "version": "44.132.2",
+      "sha256": "db344348e6b8749e8172a3dfb07810155b08845b37b0d5667b691f032a572a2e",
+      "dependencies": {
+        "https://unpkg.com/renovate@44.132.2/renovate-schema.json": "2cbdf7ad9dbcca4c6072f1ad2a3ced22f7e92a97975c02718da78211853a3a20"
+      },
+      "globalConfig": true
+    },
+    "github-workflow.schema.json": {
+      "source": "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/github-workflow.json",
+      "version": "738daaf8251a0384f0c44ebe37bf0018afe26b2b",
+      "sha256": "418fc927ff77b345abc209de18b493a6e6c9f1b5fbf3d563b531a332b418873a",
+      "dependencies": {
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/github-workflow.json": "d10c9f4656e1bd5bc6727e9b35080e017dc167154726fca93da33c7a6bd1c4f3"
+      },
+      "globalConfig": false
+    },
+    "github-action.schema.json": {
+      "source": "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/github-action.json",
+      "version": "738daaf8251a0384f0c44ebe37bf0018afe26b2b",
+      "sha256": "a57d4f633f297ee492f2359bedc665860cd8e5ebd857f41b1258370c67156fda",
+      "dependencies": {
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/github-action.json": "224326cc5a334bdb97b56b6fc320cd4381ba7d61b477b425ed506e6a420b52ba"
+      },
+      "globalConfig": false
+    },
+    "pull-request-labeler.schema.json": {
+      "source": "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/pull-request-labeler.json",
+      "version": "738daaf8251a0384f0c44ebe37bf0018afe26b2b",
+      "sha256": "ad176dcf660b402e01a8e16f9b7bf0e9881caf2316f1398871a92d680d716f5a",
+      "dependencies": {
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/pull-request-labeler.json": "cfd8862ea75b9dad7681bfc35341cc8d9046c2a2c6b1548e633c9fcfcb8a7133"
+      },
+      "globalConfig": false
+    },
+    "package.schema.json": {
+      "source": "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/package.json",
+      "version": "738daaf8251a0384f0c44ebe37bf0018afe26b2b",
+      "sha256": "5599b120c7bf0e70a6232eb6670a87a26692596d977d3ef32b3b2246afefc262",
+      "dependencies": {
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/ava.json": "3c02652299c240b152d8d30bc476dfa4bda7854132632dc9595afe53ac12ee0a",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/eslintrc.json": "2e7bf9df71bef201db128b6287c9d8b89bad4e7f8aa839d224e9c42141bb4e09",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/jscpd.json": "c4451c972dd7c5040375d01279d1e777f1cf672f0e227e2ea92e3ac4b106cfd7",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/madge.json": "b6e5ae0126cdfd73dcc1592bc91de0a8f246fde16fe9b7d0c0ad9c8b46b4a034",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/nodemon.json": "cc1c775543f377b9561fbf56e7a30a64dea18c0d7bff993ad1ad15ec8c3eaf04",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/package.json": "def9733cbd5d135a325b96d148f5cdd797c187e9dbe8d864202765ff37184345",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/partial-eslint-plugins.json": "64cb0d70799fccd67e24ae1befd7643a4808c78e383f361b820932aa80a5cf16",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/prettierrc.json": "a5f9c7ed250e12c1b5fb7f0a2ae1b03e064513b40be96688cd2517925f42a6f0",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/quikrun.json": "67cf4391e674bd17b77e893e97860d6d0c12f815a777251b65563c72e522b646",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/semantic-release.json": "0a471bd80eafbed9d250da67c2d6fbf2b6fab93d3cd1d627193875bf6a2c2168",
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/stylelintrc.json": "bbd2ced672f359a43a38f59d5cb380d6938e52f6cdf5058e9cea0870c9886efb"
+      },
+      "globalConfig": false
+    },
+    "pnpm-workspace.schema.json": {
+      "source": "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/pnpm-workspace.json",
+      "version": "738daaf8251a0384f0c44ebe37bf0018afe26b2b",
+      "sha256": "a01fc37792a48a1cdd9eb6684f2b8cd6794634bbabe33802461f0c2256b1dd39",
+      "dependencies": {
+        "https://raw.githubusercontent.com/SchemaStore/schemastore/738daaf8251a0384f0c44ebe37bf0018afe26b2b/src/schemas/json/pnpm-workspace.json": "46b3acb7fa3fe32c71df8591c1b601013173b9902f780c3c5e69909531e94ff1"
+      },
+      "globalConfig": false
+    }
+  },
+  "licenses": {
+    "schema/LICENSE.knip.txt": "ef3e637bb6cc9fa34bacda2f2d31a794ca65abfe3109c150e00bb10dca25e431",
+    "schema/LICENSE.turbo.txt": "f7ac4712aa30551de5b97b30215010515d783638107f207bcce32a85bfffc05e",
+    "schema/LICENSE.markdownlint-cli2.txt": "319fa64eff9e8658eb8883857516b3d2c8439f3d042c6e5270734eb33b0749aa",
+    "schema/LICENSE.SchemaStore.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "schema/LICENSE.Renovate.txt": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+    "schema/LICENSE.editorconfig-checker.txt": "43399eed509fbd57e078e630914350347c9f375727025bdc1e4769999c956c0b",
+    "schema/LICENSE.zizmor.txt": "a6fd1bd18da7cec8284639d5b0d351b90934317be1b9f9ea94a077621c6f35af"
+  }
+}

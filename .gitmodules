@@ -1,0 +1,40 @@
+# --------------------------------------------------
+# Git submodule configuration file.
+#
+# Defines the checkout paths and clone URLs for Git submodules.
+# Submodules allow a repository to include other Git repositories while
+# keeping their histories separate.
+#
+# The parent repository records each submodule's pinned commit separately.
+#
+# For more information, see:
+# https://git-scm.com/docs/gitmodules
+# --------------------------------------------------
+
+[submodule "infrastructure"]
+path = projects/submodules/infrastructure
+url = https://github.com/nlobby4/infrastructure.git
+
+[submodule "templates/package-template"]
+path = projects/submodules/templates/package-template
+url = https://github.com/nlobby4/package-template.git
+
+[submodule "templates/readme-template"]
+path = projects/submodules/templates/readme-template
+url = https://github.com/nlobby4/readme-template.git
+
+[submodule "templates/wiki-template"]
+path = projects/submodules/templates/wiki-template
+url = https://github.com/nlobby4/wiki-template.git
+
+[submodule ".github"]
+path = projects/submodules/.github
+url = https://github.com/nlobby4/.github.git
+
+[submodule ".github-private"]
+path = projects/submodules/.github-private
+url = https://github.com/nlobby4/.github-private.git
+
+[submodule "developer-guide"]
+path = projects/submodules/developer-guide
+url = https://github.com/nlobby4/developer-guide.git

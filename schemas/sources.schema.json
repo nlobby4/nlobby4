@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaStoreRevision": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "renovateVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "schemas": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["file"],
+        "properties": {
+          "file": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+\\.schema\\.json$"
+          },
+          "package": { "type": "string" },
+          "path": { "type": "string" },
+          "store": { "type": "string", "pattern": "^[a-zA-Z0-9._-]+\\.json$" },
+          "url": { "type": "string", "pattern": "^https://" },
+          "versionFrom": {
+            "enum": ["renovate", "zizmor", "editorconfig-checker"]
+          },
+          "globalConfig": { "type": "boolean" }
+        },
+        "oneOf": [
+          {
+            "required": ["package", "path"],
+            "not": {
+              "anyOf": [{ "required": ["store"] }, { "required": ["url"] }]
+            }
+          },
+          {
+            "required": ["store"],
+            "not": {
+              "anyOf": [{ "required": ["package"] }, { "required": ["url"] }]
+            }
+          },
+          {
+            "required": ["url", "versionFrom"],
+            "not": {
+              "anyOf": [{ "required": ["package"] }, { "required": ["store"] }]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "required": ["schemaStoreRevision", "renovateVersion", "schemas"],
+  "title": "Repository schema source inventory",
+  "type": "object"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "../schemas/license-sources.schema.json",
+  "tools": {
+    "mise": { "repository": "jdx/mise", "tag": "v{version}" },
+    "node": { "repository": "nodejs/node", "tag": "v{version}" },
+    "npm:pnpm": { "repository": "pnpm/pnpm", "tag": "v{version}" },
+    "npm:@devcontainers/cli": {
+      "repository": "devcontainers/cli",
+      "tag": "v{version}"
+    },
+    "pipx": { "repository": "pypa/pipx", "tag": "{version}" },
+    "uv": { "repository": "astral-sh/uv", "tag": "{version}" },
+    "shellcheck": { "repository": "koalaman/shellcheck", "tag": "v{version}" },
+    "trivy": { "repository": "aquasecurity/trivy", "tag": "v{version}" },
+    "act": { "repository": "nektos/act", "tag": "v{version}" },
+    "actionlint": { "repository": "rhysd/actionlint", "tag": "v{version}" },
+    "conftest": {
+      "repository": "open-policy-agent/conftest",
+      "tag": "v{version}"
+    },
+    "minisign": { "repository": "jedisct1/minisign", "tag": "{version}" },
+    "gitleaks": { "repository": "gitleaks/gitleaks", "tag": "v{version}" },
+    "gum": { "repository": "charmbracelet/gum", "tag": "v{version}" },
+    "hadolint": { "repository": "hadolint/hadolint", "tag": "v{version}" },
+    "tombi": { "repository": "tombi-toml/tombi", "tag": "v{version}" },
+    "yamllint": { "repository": "adrienverge/yamllint", "tag": "v{version}" },
+    "zizmor": { "repository": "woodruffw/zizmor", "tag": "v{version}" }
+  }
+}

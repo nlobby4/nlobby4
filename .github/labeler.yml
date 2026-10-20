@@ -1,0 +1,101 @@
+# --------------------------------------------------
+# Labeler configuration file.
+#
+# Automatically applies labels to pull requests based on branch names and
+# changed files. Labels align with the Conventional Commits specification and
+# the organization label set.
+#
+# For more information please see:
+# https://github.com/actions/labeler
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../schemas/pull-request-labeler.schema.json
+
+feat:
+  - any:
+      - head-branch: [^feat/, ^feature/]
+
+fix:
+  - any:
+      - head-branch: [^fix/, ^bugfix/, ^hotfix/]
+
+breaking-change:
+  - any:
+      - head-branch: [^breaking/, ^breaking-change/]
+
+refactor:
+  - any:
+      - head-branch: [^refactor/]
+
+perf:
+  - any:
+      - head-branch: [^perf/]
+
+revert:
+  - any:
+      - head-branch: [^revert/]
+
+chore:
+  - any:
+      - head-branch: [^chore/]
+
+docs:
+  - any:
+      - head-branch: [^docs/]
+      - changed-files:
+          - any-glob-to-any-file:
+              - "**/*.md"
+              - "**/docs/**"
+
+ci:
+  - any:
+      - head-branch: [^ci/]
+      - changed-files:
+          - any-glob-to-any-file:
+              - "**/.devcontainer/**"
+              - "**/.github/actions/**"
+              - "**/.github/workflows/**"
+              - "**/renovate.json"
+              - "**/.github/renovate-host.json"
+              - "**/.github/labeler.yml"
+              - "**/.github/zizmor.yml"
+              - "**/.husky/**"
+              - "**/scripts/**"
+              - "**/.npmrc"
+              - "**/mise.lock"
+              - "**/mise.toml"
+              - "**/knip.json"
+
+# TODO: Add your build systems
+build:
+  - any:
+      - head-branch: [^build/]
+
+# TODO: Add further linter or formatter configuration files
+style:
+  - any:
+      - head-branch: [^style/]
+      - changed-files:
+          - any-glob-to-any-file:
+              - "**/.editorconfig"
+              - "**/.editorconfig-checker.*"
+              - "**/prettier.config.*"
+              - "**/commitlint.config.*"
+              - "**/.cspell.json"
+              - "**/.markdownlint-cli2.*"
+              - "**/.shellcheckrc"
+
+# TODO: Adjust to fit your testing framework
+test:
+  - any:
+      - head-branch: [^test/]
+
+# TODO: Adjust if using other package ecosystems
+dependencies:
+  - any:
+      - head-branch: [^renovate/]
+      - changed-files:
+          - any-glob-to-any-file:
+              - "**/pnpm-lock.yaml"
+              - "**/pnpm-workspace.yaml"
+              - "**/package.json"

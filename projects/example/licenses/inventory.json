@@ -1,0 +1,13 @@
+{
+  "coverage": "Direct Node dependencies, configured mise/bootstrap tools and schema sources only. Transitive dependencies and operating-system packages are intentionally excluded.",
+  "files": {},
+  "format": 1,
+  "gaps": [],
+  "inputs": {
+    "pnpm-lock.yaml": "8766fd3c9b7b5f1f07c360b1b4b288ca9292adb3b8c55b9c6dd5a471743e9ce3",
+    "projects/example/package.json": "e55afef2c2a5a53492bf1997a4ec9ebf8b5d5f792e5fcf71b64d745046f84d9c",
+    "scripts/python/collect-licenses.py": "e2cc5f501d314e3084caee6195fe8c2d6205050acde888880da700fdfa2a4480"
+  },
+  "owner": "projects/example",
+  "packages": {}
+}

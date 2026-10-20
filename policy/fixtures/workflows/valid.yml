@@ -1,0 +1,14 @@
+name: Valid
+on: push
+permissions: {}
+jobs:
+  test:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    services:
+      registry:
+        image: registry:2@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    steps:
+      - uses: actions/checkout@aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      - uses: ./.github/actions/setup-node-deps

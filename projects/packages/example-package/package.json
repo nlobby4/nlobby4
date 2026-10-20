@@ -1,0 +1,25 @@
+{
+  "$schema": "../../../schemas/package.schema.json",
+  "name": "@nlobby4/example-package",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Dependency-free npm package fixture for organization-shell boundaries",
+  "license": "MIT",
+  "type": "module",
+  "exports": "./src/index.js",
+  "files": [
+    "src",
+    "licenses",
+    "README.md"
+  ],
+  "scripts": {
+    "check": "pnpm run format:check && pnpm run lint && pnpm run test",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint": "eslint . --max-warnings 0",
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

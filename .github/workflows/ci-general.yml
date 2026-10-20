@@ -1,0 +1,400 @@
+# --------------------------------------------------
+# CI General workflow.
+#
+# Handles code quality checks for pull requests to release branches.
+# Uses pull_request to safely execute untrusted code
+# from forks without elevated privileges.
+#
+# Jobs run in parallel. Tool versions are installed from mise.toml and mise.lock
+# so CI uses the same runtime versions as local and development-container users.
+#
+# For more information please see:
+# https://docs.github.com/en/actions/writing-workflows
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../../schemas/github-workflow.schema.json
+
+name: CI General
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+# Deny all by default, jobs declare their own permissions as needed
+permissions: {}
+
+jobs:
+  # --------------------------------------------------
+  # Commitlint - validates every commit in the pull request
+  # --------------------------------------------------
+  commitlint:
+    name: commitlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Validate pull request commit messages
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: pnpm run lint:commit --from "$PR_BASE_SHA" --to "$PR_HEAD_SHA"
+
+  # --------------------------------------------------
+  # EditorConfig - enforces cross-editor file invariants
+  # --------------------------------------------------
+  editorconfig:
+    name: editorconfig
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Validate EditorConfig compliance
+        run: pnpm run lint:editorconfig
+
+  # --------------------------------------------------
+  # Audit - runs the npm audit script to check for
+  # vulnerable production dependencies.
+  # --------------------------------------------------
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Audit dependencies
+        run: pnpm run audit
+
+      - name: Audit developer tooling
+        run: pnpm run audit:dev
+
+  # --------------------------------------------------
+  # Format check - validates code formatting
+  # using Prettier
+  # --------------------------------------------------
+  prettier:
+    name: prettier
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Restore prettier cache
+        id: prettier-cache-restore
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25
+        with:
+          path: .cache/prettier/.prettiercache
+          key: >-
+            prettier-v2-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'prettier.config.js', '.prettierignore', '.gitignore', '.editorconfig', 'mise.toml', 'mise.lock', '.mise/locks/**') }}
+          restore-keys: |
+            prettier-v2-${{ runner.os }}-
+
+      - name: Check formatting
+        run: pnpm run format:check
+
+      - name: Save prettier cache
+        if: always() && steps.prettier-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25
+        with:
+          path: .cache/prettier/.prettiercache
+          key: >-
+            prettier-v2-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'prettier.config.js', '.prettierignore', '.gitignore', '.editorconfig', 'mise.toml', 'mise.lock', '.mise/locks/**') }}
+
+  # --------------------------------------------------
+  # Markdown lint - validates markdown files
+  # --------------------------------------------------
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Install cmark-gfm
+        run: pnpm run ci:install-cmark-gfm
+
+      - name: Lint markdown
+        run: pnpm run lint:md
+
+      - name: Validate GFM parsing
+        run: pnpm run lint:md:gfm
+
+  # --------------------------------------------------
+  # Schema validation - validates repository schemas
+  # and schema-backed configuration files
+  # --------------------------------------------------
+  schema:
+    name: schema
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Validate schemas
+        run: pnpm run lint:schema
+
+      - name: Verify collected license notices offline
+        run: pnpm run licenses:check
+
+      - name: Test license collection boundaries
+        run: pnpm run test:licenses
+
+  # --------------------------------------------------
+  # ESLint - validates repository-owned JavaScript
+  # --------------------------------------------------
+  eslint:
+    name: eslint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Lint JavaScript
+        run: pnpm run lint:js
+
+  # --------------------------------------------------
+  # Tombi - validates repository TOML configuration
+  # --------------------------------------------------
+  tombi:
+    name: tombi
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm tombi
+
+      - name: Lint TOML
+        run: pnpm run lint:toml
+
+  # --------------------------------------------------
+  # yamllint - validates generic YAML structure and style
+  # --------------------------------------------------
+  yamllint:
+    name: yamllint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm uv yamllint
+
+      - name: Lint YAML
+        run: pnpm run lint:yaml
+
+  # --------------------------------------------------
+  # ShellCheck - validates shell scripts
+  # --------------------------------------------------
+  shellcheck:
+    name: shellcheck
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm shellcheck
+
+      - name: Lint shell scripts
+        run: pnpm run lint:shell
+
+  # --------------------------------------------------
+  # Actionlint - validates GitHub Actions workflows
+  # --------------------------------------------------
+  actionlint:
+    name: actionlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm actionlint
+
+      - name: Lint GitHub Actions workflows
+        run: pnpm run lint:actions
+
+  # --------------------------------------------------
+  # Zizmor - audits GitHub Actions workflow security
+  # --------------------------------------------------
+  zizmor:
+    name: zizmor
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm zizmor
+
+      - name: Audit GitHub Actions security
+        run: pnpm run lint:actions:security
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ZIZMOR_FORMAT: github
+          ZIZMOR_OFFLINE: "false"
+
+  # --------------------------------------------------
+  # Knip - checks for unused dependencies
+  # --------------------------------------------------
+  knip:
+    name: knip
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Restore knip cache
+        id: knip-cache-restore
+        uses: actions/cache/restore@caa296126883cff596d87d8935842f9db880ef25
+        with:
+          path: .cache/knip
+          key: >-
+            knip-v2-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'knip.json', 'package.json', 'scripts/node/package.json', 'pnpm-workspace.yaml', 'mise.toml', 'mise.lock', '.mise/locks/**') }}
+          restore-keys: |
+            knip-v2-${{ runner.os }}-
+
+      - name: Check unused dependencies
+        run: pnpm run deps:unused
+
+      - name: Save knip cache
+        if: always() && steps.knip-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@caa296126883cff596d87d8935842f9db880ef25
+        with:
+          path: .cache/knip
+          key: >-
+            knip-v2-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'knip.json', 'package.json', 'scripts/node/package.json', 'pnpm-workspace.yaml', 'mise.toml', 'mise.lock', '.mise/locks/**') }}
+
+  gitleaks:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm gitleaks
+      - name: Scan complete Git history
+        run: pnpm run lint:secrets
+
+  hadolint:
+    name: hadolint
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm hadolint
+      - name: Lint Dockerfile
+        run: pnpm run lint:dockerfile
+
+  conftest:
+    name: conftest
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm conftest
+      - name: Validate configuration policy
+        run: pnpm run lint:policy

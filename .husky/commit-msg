@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# --------------------------------------------------
+# Commit message hook.
+#
+# Runs after Git prepares the commit message and before the
+# commit is created.
+# Failures here block the commit.
+#
+# To skip this hook in exceptional cases:
+# git commit --no-verify
+# --------------------------------------------------
+
+# Exit immediately if a command fails
+set -eu
+
+# Validate the commit message file through the shared Commitlint runner
+pnpm run lint:commit --edit "$1"

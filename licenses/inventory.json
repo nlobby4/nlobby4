@@ -1,0 +1,568 @@
+{
+  "coverage": "Direct Node dependencies, configured mise/bootstrap tools and schema sources only. Transitive dependencies and operating-system packages are intentionally excluded.",
+  "files": {
+    "npm/%40apidevtools%2Fjson-schema-ref-parser/16.0.3/LICENSE": "c21f6ea22d94fe6b86c338ba2e57033c96fd202ad161fe6e1e0b12ab6e1aa7cc",
+    "npm/%40commitlint%2Fcli/20.5.0/license.md": "98e11c1eb758c34d5176d8b4ccc78f452431e86cec1a0198b916c16bd7d75aee",
+    "npm/%40commitlint%2Fconfig-conventional/20.5.0/license.md": "98e11c1eb758c34d5176d8b4ccc78f452431e86cec1a0198b916c16bd7d75aee",
+    "npm/%40commitlint%2Fcz-commitlint/20.5.1/license.md": "c0fc02a86ae2b179c4729694c523bbf42da674e5136ed8e12e3cb2f26556ea9f",
+    "npm/%40commitlint%2Fformat/20.5.0/license.md": "98e11c1eb758c34d5176d8b4ccc78f452431e86cec1a0198b916c16bd7d75aee",
+    "npm/%40commitlint%2Ftypes/20.5.0/license.md": "98e11c1eb758c34d5176d8b4ccc78f452431e86cec1a0198b916c16bd7d75aee",
+    "npm/%40eslint%2Fjs/10.0.1/LICENSE": "3b6be04f862a077a4b97929dbf247299360824d9365f8603c263769303ace18c",
+    "npm/%40prettier%2Fplugin-oxc/0.2.2/LICENSE": "b0f2417199889f1c0d28ec4e0244eacf1a15de5819d61f641dd7d8f45153ac9c",
+    "npm/ajv-formats/3.0.1/LICENSE": "9df3bb69929a3b650ed73b3bfa1756725aaff0ac296461605753547004eafeaf",
+    "npm/ajv/8.18.0/LICENSE": "a05350a88e318e4f5f2c2a1ff1e2e88daa4dd38e6e78b71cccae422bdc762cc3",
+    "npm/any-ascii/0.3.3/LICENSE": "9e33d1beedd533cca2dc085f0c260e37623f62d9a1074ca71e8ede33fe91e09d",
+    "npm/commitizen/4.3.1/LICENSE": "62b9b932cf5effd097de675f6604f05dc1fa57553ad5e25381563c0cd9a922b4",
+    "npm/cspell/10.2.1/LICENSE": "41ed94191a66ec0c857690d743e38f9d665bd571a433474f0587335a3520e1db",
+    "npm/editorconfig-checker/7.0.0/LICENSE": "ee03dde57acb0a121e253bf7b25f8747e138c5b58b1b0f8e3d9c722643326a84",
+    "npm/editorconfig-checker/7.0.0/bin/v4.0.1/LICENSE": "43399eed509fbd57e078e630914350347c9f375727025bdc1e4769999c956c0b",
+    "npm/eslint/10.10.0/LICENSE": "3b6be04f862a077a4b97929dbf247299360824d9365f8603c263769303ace18c",
+    "npm/globals/17.12.0/license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "npm/husky/9.1.7/LICENSE": "a84ab50793627920239781ad6a48a749bc2fe37707e47fdf8e6cb1f55bc747ab",
+    "npm/jsonc-parser/3.3.1/LICENSE.md": "c3a24c02d678e5f0711623dcf3ab3f243b273c2633f638a1fa8e35fb7c7f8e4d",
+    "npm/knip/6.5.0/LICENSE": "ef3e637bb6cc9fa34bacda2f2d31a794ca65abfe3109c150e00bb10dca25e431",
+    "npm/lint-staged/16.4.0/LICENSE": "b66a59ec66012cf1fec1c791ad8ae8706a2ba32676b0ba20b1ebf64aea7ff0b2",
+    "npm/markdown-it/14.3.0/LICENSE": "792c48c5a849a15fdf9e37e8bcf9e6d1dd13b32b46c642a748a0a46a9919d473",
+    "npm/markdownlint-cli2/0.23.2/LICENSE": "319fa64eff9e8658eb8883857516b3d2c8439f3d042c6e5270734eb33b0749aa",
+    "npm/parse5/8.0.1/LICENSE": "8c535800331e1e4439835555b3f9edc7fe9dee2fab0d8bbbd5a982e8b8343d4d",
+    "npm/prettier-plugin-jsdoc/1.8.1/LICENSE": "1e152b1653a18111cc547fbb98801614b965e389a9e54d11348b176522ba3ff1",
+    "npm/prettier-plugin-multiline-arrays/4.1.11/LICENSE-CC0": "2f4190b0d6d9d7f3041df7962f62272af35162cd84b8e3a093d09555c417a3d0",
+    "npm/prettier-plugin-multiline-arrays/4.1.11/LICENSE-MIT": "fc8e63b062785099cc38fe9dfa5c61b7cbc049cfc259bda14073b2a93fdbff5b",
+    "npm/prettier-plugin-organize-imports/4.3.0/license": "f336161d4d9b3bfc743f6228bd73a71cb56f8030174c866e3c06fd57dd523fc0",
+    "npm/prettier-plugin-packagejson/3.0.2/LICENSE": "6482341bf214eacd14742075793b3af9b86e9e4f824799e3344eecd068c0ad32",
+    "npm/prettier-plugin-sh/0.19.0/LICENSE": "db2d1ad10d0c84dddf2837ac2925e4fd9bed88b86897c868fc6f38b182e36f53",
+    "npm/prettier-plugin-sort-json/4.2.0/LICENSE": "b19f7ac1176970067ae32abb02eecba50fb233d242d20c8d4f66035f6eacd17c",
+    "npm/prettier-plugin-yaml/1.3.0/LICENSE": "8be2afcbc9d9c382842e0dfed9ac1fe5387e29ee7fd40233d3ff8fbcc8550486",
+    "npm/prettier/3.9.6/LICENSE": "b0f2417199889f1c0d28ec4e0244eacf1a15de5819d61f641dd7d8f45153ac9c",
+    "npm/string-width/8.2.2/license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "npm/strip-ansi/7.2.0/license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "npm/turbo/2.11.7/LICENSE": "f7ac4712aa30551de5b97b30215010515d783638107f207bcce32a85bfffc05e",
+    "npm/wrap-ansi/10.0.0/license": "5c932d88256b4ab958f64a856fa48e8bd1f55bc1d96b8149c65689e0c61789d3",
+    "npm/yaml/2.9.0/LICENSE": "5bba27375d93e9119f76c1015f7672cf9ad5f70952296e0842fb2243d6376869",
+    "schema/LICENSE.Renovate.txt": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+    "schema/LICENSE.SchemaStore.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "schema/LICENSE.editorconfig-checker.txt": "43399eed509fbd57e078e630914350347c9f375727025bdc1e4769999c956c0b",
+    "schema/LICENSE.knip.txt": "ef3e637bb6cc9fa34bacda2f2d31a794ca65abfe3109c150e00bb10dca25e431",
+    "schema/LICENSE.markdownlint-cli2.txt": "319fa64eff9e8658eb8883857516b3d2c8439f3d042c6e5270734eb33b0749aa",
+    "schema/LICENSE.turbo.txt": "f7ac4712aa30551de5b97b30215010515d783638107f207bcce32a85bfffc05e",
+    "schema/LICENSE.zizmor.txt": "a6fd1bd18da7cec8284639d5b0d351b90934317be1b9f9ea94a077621c6f35af",
+    "tools/act/0.2.89/LICENSE": "da3ece2d2daf5c812c8606d2922094f51818258d4ce0e041b4ee8409ba3b381f",
+    "tools/actionlint/1.7.7/LICENSE.txt": "03a26b06d224380a02bf100e05fff3b2dfc71b14d4e2fa685ec9963a87563c22",
+    "tools/conftest/0.69.0/LICENSE": "a3fc6a99a82b59b761a6b1aabe8fc540b7046d5f91377fc1d8897dbbf3bd18ac",
+    "tools/gitleaks/8.30.1/LICENSE": "e3884b252b3bfc045e55be43a34d1e80da070bc6f804ac95bf4660e97d62ebc6",
+    "tools/gum/2.0.0/LICENSE": "0b43605fbf0dfb5d038cfb9357a73a364186e6c6e1f45e4f2d04f5409c50bfbf",
+    "tools/hadolint/2.15.1/LICENSE": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+    "tools/minisign/0.12/LICENSE": "01aa50818d6609e85a9610b7d04da037e8b28bcf3bb5b5b4963c0c3f7abdabbd",
+    "tools/mise/2026.9.18/LICENSE": "4d22d6f9222adef0a45ef895bfdd6f71d6394b1784b1001a4bebb4298b8ddc69",
+    "tools/node/24.15.0/LICENSE": "4573185d56580da2b890ba34a85a409257640f1c5632eade4300137266194d18",
+    "tools/npm%3A%40devcontainers%2Fcli/0.88.0/LICENSE.txt": "9dc5a42b169ffdf78a925772761436e8bf234deb779e0dc16a03decac0797497",
+    "tools/npm%3Apnpm/10.20.0/LICENSE": "e0a867ff513ea7be2a0ddc339ac6a031e459a38668e077b8f0e649544062f9f2",
+    "tools/pipx/1.17.6/LICENSE": "2e142cbef6acf436d47d8fe1412439c442eeb6c48d5ef73d6b91fffbbf1cdf89",
+    "tools/shellcheck/0.11.0/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "tools/tombi/1.5.2/LICENSE": "9a089d53bbfae1a1379586b7c64995e42fe1acf6ed68471768ae1430ee9123a2",
+    "tools/trivy/0.69.3/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "tools/trivy/0.69.3/NOTICE": "aed9bc6dab87c6f6567d20bf0f5c0433a8ccd3ad7873322cf79b9244eb720a1f",
+    "tools/uv/0.12.10/LICENSE-APACHE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "tools/uv/0.12.10/LICENSE-MIT": "860e3d7a86b84e6a7012c7a635fc64df475cebc6cce34dfeb73a5982ec58176c",
+    "tools/yamllint/1.38.0/LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "tools/zizmor/1.26.1/LICENSE": "a6fd1bd18da7cec8284639d5b0d351b90934317be1b9f9ea94a077621c6f35af"
+  },
+  "format": 1,
+  "gaps": [],
+  "inputs": {
+    ".devcontainer/Dockerfile": "bfefd817876749870b8610e23242be291975c360dc8f8c41156dff8abecc123c",
+    ".devcontainer/devcontainer.json": "9468a38539fb7697ffc478aac49848a969b7d031984594d6e7ece7c475d5d92e",
+    ".devcontainer/versions.env": "43f944443f996defc6260536a1f7cb572c7658cc8ddc9409002fb5dde4b28ee8",
+    ".mise/locks/npm-devcontainers-cli/0.88.0/aube-lock.yaml": "15003bb600977d8402dc9514de139f76a3cb93db2a8f580c52df888ef43eaba3",
+    ".mise/locks/npm-devcontainers-cli/0.88.0/package.json": "d78c55904b9b1bc3339daae58a37a5661231c95080108d55afbab4f98931c3dd",
+    ".mise/locks/npm-pnpm/10.20.0/aube-lock.yaml": "6e15241862a4b2d44382838c039d6602778f6f0172f2f3dc3b921c082fdfb7da",
+    ".mise/locks/npm-pnpm/10.20.0/package.json": "8740625b1f927cccf3762226b52d4b48981a34ddae16ab9cfd45837e6763c612",
+    ".mise/locks/yamllint/1.38.0~b9b4827c/pyproject.toml": "013b5cf3be1ca02796a6a01de7a65df7ecc0569a2207df275985edeeab381b20",
+    ".mise/locks/yamllint/1.38.0~b9b4827c/uv.lock": "64eea9444edf30932be1bd76aa21dac1849fcb304e18d42548694821a2dd9476",
+    "licenses/sources.json": "80d0fbe483891e1ac759e86d305705fe67c6c4e1ed6451d91838cddc5f362b7a",
+    "mise.lock": "ed3a19173f70b7e7e274beed1d4bfb0e880c2b7f262877f45cda647f29803895",
+    "mise.toml": "5234d72c97379fbc3ad7df93c3eb63971cea0cb3c5310b3b0b7a8af53b5b0821",
+    "package.json": "84dbc4a2aa3407c046057d3cf7db8486b85f49e7c78ca4860566791a3aa25fcf",
+    "pnpm-lock.yaml": "8766fd3c9b7b5f1f07c360b1b4b288ca9292adb3b8c55b9c6dd5a471743e9ce3",
+    "schemas/sources.lock.json": "23cc0bd23dc71e9d65dd40c6565b57797a9b934ac070d1970d455e17151504dc",
+    "scripts/node/package.json": "b6aa70e0e3e30b7b1949f9669c893b324f80259cbfbf65164d4a812912d99886",
+    "scripts/python/collect-licenses.py": "e2cc5f501d314e3084caee6195fe8c2d6205050acde888880da700fdfa2a4480"
+  },
+  "owner": ".",
+  "packages": {
+    "npm:@apidevtools/json-schema-ref-parser@16.0.3": {
+      "license": "MIT",
+      "name": "@apidevtools/json-schema-ref-parser",
+      "notices": [
+        "npm/%40apidevtools%2Fjson-schema-ref-parser/16.0.3/LICENSE"
+      ],
+      "version": "16.0.3"
+    },
+    "npm:@commitlint/cli@20.5.0": {
+      "license": "MIT",
+      "name": "@commitlint/cli",
+      "notices": [
+        "npm/%40commitlint%2Fcli/20.5.0/license.md"
+      ],
+      "version": "20.5.0"
+    },
+    "npm:@commitlint/config-conventional@20.5.0": {
+      "license": "MIT",
+      "name": "@commitlint/config-conventional",
+      "notices": [
+        "npm/%40commitlint%2Fconfig-conventional/20.5.0/license.md"
+      ],
+      "version": "20.5.0"
+    },
+    "npm:@commitlint/cz-commitlint@20.5.1": {
+      "license": "MIT",
+      "name": "@commitlint/cz-commitlint",
+      "notices": [
+        "npm/%40commitlint%2Fcz-commitlint/20.5.1/license.md"
+      ],
+      "version": "20.5.1"
+    },
+    "npm:@commitlint/format@20.5.0": {
+      "license": "MIT",
+      "name": "@commitlint/format",
+      "notices": [
+        "npm/%40commitlint%2Fformat/20.5.0/license.md"
+      ],
+      "version": "20.5.0"
+    },
+    "npm:@commitlint/types@20.5.0": {
+      "license": "MIT",
+      "name": "@commitlint/types",
+      "notices": [
+        "npm/%40commitlint%2Ftypes/20.5.0/license.md"
+      ],
+      "version": "20.5.0"
+    },
+    "npm:@eslint/js@10.0.1": {
+      "license": "MIT",
+      "name": "@eslint/js",
+      "notices": [
+        "npm/%40eslint%2Fjs/10.0.1/LICENSE"
+      ],
+      "version": "10.0.1"
+    },
+    "npm:@prettier/plugin-oxc@0.2.2": {
+      "license": "MIT",
+      "name": "@prettier/plugin-oxc",
+      "notices": [
+        "npm/%40prettier%2Fplugin-oxc/0.2.2/LICENSE"
+      ],
+      "version": "0.2.2"
+    },
+    "npm:ajv-formats@3.0.1": {
+      "license": "MIT",
+      "name": "ajv-formats",
+      "notices": [
+        "npm/ajv-formats/3.0.1/LICENSE"
+      ],
+      "version": "3.0.1"
+    },
+    "npm:ajv@8.18.0": {
+      "license": "MIT",
+      "name": "ajv",
+      "notices": [
+        "npm/ajv/8.18.0/LICENSE"
+      ],
+      "version": "8.18.0"
+    },
+    "npm:any-ascii@0.3.3": {
+      "license": "ISC",
+      "name": "any-ascii",
+      "notices": [
+        "npm/any-ascii/0.3.3/LICENSE"
+      ],
+      "version": "0.3.3"
+    },
+    "npm:commitizen@4.3.1": {
+      "license": "MIT",
+      "name": "commitizen",
+      "notices": [
+        "npm/commitizen/4.3.1/LICENSE"
+      ],
+      "version": "4.3.1"
+    },
+    "npm:cspell@10.2.1": {
+      "license": "MIT",
+      "name": "cspell",
+      "notices": [
+        "npm/cspell/10.2.1/LICENSE"
+      ],
+      "version": "10.2.1"
+    },
+    "npm:editorconfig-checker@7.0.0": {
+      "license": "MIT",
+      "name": "editorconfig-checker",
+      "notices": [
+        "npm/editorconfig-checker/7.0.0/LICENSE",
+        "npm/editorconfig-checker/7.0.0/bin/v4.0.1/LICENSE"
+      ],
+      "version": "7.0.0"
+    },
+    "npm:eslint@10.10.0": {
+      "license": "MIT",
+      "name": "eslint",
+      "notices": [
+        "npm/eslint/10.10.0/LICENSE"
+      ],
+      "version": "10.10.0"
+    },
+    "npm:globals@17.12.0": {
+      "license": "MIT",
+      "name": "globals",
+      "notices": [
+        "npm/globals/17.12.0/license"
+      ],
+      "version": "17.12.0"
+    },
+    "npm:husky@9.1.7": {
+      "license": "MIT",
+      "name": "husky",
+      "notices": [
+        "npm/husky/9.1.7/LICENSE"
+      ],
+      "version": "9.1.7"
+    },
+    "npm:jsonc-parser@3.3.1": {
+      "license": "MIT",
+      "name": "jsonc-parser",
+      "notices": [
+        "npm/jsonc-parser/3.3.1/LICENSE.md"
+      ],
+      "version": "3.3.1"
+    },
+    "npm:knip@6.5.0": {
+      "license": "ISC",
+      "name": "knip",
+      "notices": [
+        "npm/knip/6.5.0/LICENSE"
+      ],
+      "version": "6.5.0"
+    },
+    "npm:lint-staged@16.4.0": {
+      "license": "MIT",
+      "name": "lint-staged",
+      "notices": [
+        "npm/lint-staged/16.4.0/LICENSE"
+      ],
+      "version": "16.4.0"
+    },
+    "npm:markdown-it@14.3.0": {
+      "license": "MIT",
+      "name": "markdown-it",
+      "notices": [
+        "npm/markdown-it/14.3.0/LICENSE"
+      ],
+      "version": "14.3.0"
+    },
+    "npm:markdownlint-cli2@0.23.2": {
+      "license": "MIT",
+      "name": "markdownlint-cli2",
+      "notices": [
+        "npm/markdownlint-cli2/0.23.2/LICENSE"
+      ],
+      "version": "0.23.2"
+    },
+    "npm:parse5@8.0.1": {
+      "license": "MIT",
+      "name": "parse5",
+      "notices": [
+        "npm/parse5/8.0.1/LICENSE"
+      ],
+      "version": "8.0.1"
+    },
+    "npm:prettier-plugin-jsdoc@1.8.1": {
+      "license": "MIT",
+      "name": "prettier-plugin-jsdoc",
+      "notices": [
+        "npm/prettier-plugin-jsdoc/1.8.1/LICENSE"
+      ],
+      "version": "1.8.1"
+    },
+    "npm:prettier-plugin-multiline-arrays@4.1.11": {
+      "license": "(MIT OR CC0-1.0)",
+      "name": "prettier-plugin-multiline-arrays",
+      "notices": [
+        "npm/prettier-plugin-multiline-arrays/4.1.11/LICENSE-CC0",
+        "npm/prettier-plugin-multiline-arrays/4.1.11/LICENSE-MIT"
+      ],
+      "version": "4.1.11"
+    },
+    "npm:prettier-plugin-organize-imports@4.3.0": {
+      "license": "MIT",
+      "name": "prettier-plugin-organize-imports",
+      "notices": [
+        "npm/prettier-plugin-organize-imports/4.3.0/license"
+      ],
+      "version": "4.3.0"
+    },
+    "npm:prettier-plugin-packagejson@3.0.2": {
+      "license": "MIT",
+      "name": "prettier-plugin-packagejson",
+      "notices": [
+        "npm/prettier-plugin-packagejson/3.0.2/LICENSE"
+      ],
+      "version": "3.0.2"
+    },
+    "npm:prettier-plugin-sh@0.19.0": {
+      "license": "MIT",
+      "name": "prettier-plugin-sh",
+      "notices": [
+        "npm/prettier-plugin-sh/0.19.0/LICENSE"
+      ],
+      "version": "0.19.0"
+    },
+    "npm:prettier-plugin-sort-json@4.2.0": {
+      "license": "MIT",
+      "name": "prettier-plugin-sort-json",
+      "notices": [
+        "npm/prettier-plugin-sort-json/4.2.0/LICENSE"
+      ],
+      "version": "4.2.0"
+    },
+    "npm:prettier-plugin-yaml@1.3.0": {
+      "license": "MIT",
+      "name": "prettier-plugin-yaml",
+      "notices": [
+        "npm/prettier-plugin-yaml/1.3.0/LICENSE"
+      ],
+      "version": "1.3.0"
+    },
+    "npm:prettier@3.9.6": {
+      "license": "MIT",
+      "name": "prettier",
+      "notices": [
+        "npm/prettier/3.9.6/LICENSE"
+      ],
+      "version": "3.9.6"
+    },
+    "npm:string-width@8.2.2": {
+      "license": "MIT",
+      "name": "string-width",
+      "notices": [
+        "npm/string-width/8.2.2/license"
+      ],
+      "version": "8.2.2"
+    },
+    "npm:strip-ansi@7.2.0": {
+      "license": "MIT",
+      "name": "strip-ansi",
+      "notices": [
+        "npm/strip-ansi/7.2.0/license"
+      ],
+      "version": "7.2.0"
+    },
+    "npm:turbo@2.11.7": {
+      "license": "MIT",
+      "name": "turbo",
+      "notices": [
+        "npm/turbo/2.11.7/LICENSE"
+      ],
+      "version": "2.11.7"
+    },
+    "npm:wrap-ansi@10.0.0": {
+      "license": "MIT",
+      "name": "wrap-ansi",
+      "notices": [
+        "npm/wrap-ansi/10.0.0/license"
+      ],
+      "version": "10.0.0"
+    },
+    "npm:yaml@2.9.0": {
+      "license": "ISC",
+      "name": "yaml",
+      "notices": [
+        "npm/yaml/2.9.0/LICENSE"
+      ],
+      "version": "2.9.0"
+    },
+    "tool:act@0.2.89": {
+      "name": "act",
+      "notices": [
+        "tools/act/0.2.89/LICENSE"
+      ],
+      "sources": {
+        "tools/act/0.2.89/LICENSE": "https://raw.githubusercontent.com/nektos/act/v0.2.89/LICENSE"
+      },
+      "version": "0.2.89"
+    },
+    "tool:actionlint@1.7.7": {
+      "name": "actionlint",
+      "notices": [
+        "tools/actionlint/1.7.7/LICENSE.txt"
+      ],
+      "sources": {
+        "tools/actionlint/1.7.7/LICENSE.txt": "https://raw.githubusercontent.com/rhysd/actionlint/v1.7.7/LICENSE.txt"
+      },
+      "version": "1.7.7"
+    },
+    "tool:conftest@0.69.0": {
+      "name": "conftest",
+      "notices": [
+        "tools/conftest/0.69.0/LICENSE"
+      ],
+      "sources": {
+        "tools/conftest/0.69.0/LICENSE": "https://raw.githubusercontent.com/open-policy-agent/conftest/v0.69.0/LICENSE"
+      },
+      "version": "0.69.0"
+    },
+    "tool:gitleaks@8.30.1": {
+      "name": "gitleaks",
+      "notices": [
+        "tools/gitleaks/8.30.1/LICENSE"
+      ],
+      "sources": {
+        "tools/gitleaks/8.30.1/LICENSE": "https://raw.githubusercontent.com/gitleaks/gitleaks/v8.30.1/LICENSE"
+      },
+      "version": "8.30.1"
+    },
+    "tool:gum@2.0.0": {
+      "name": "gum",
+      "notices": [
+        "tools/gum/2.0.0/LICENSE"
+      ],
+      "sources": {
+        "tools/gum/2.0.0/LICENSE": "https://raw.githubusercontent.com/charmbracelet/gum/v2.0.0/LICENSE"
+      },
+      "version": "2.0.0"
+    },
+    "tool:hadolint@2.15.1": {
+      "name": "hadolint",
+      "notices": [
+        "tools/hadolint/2.15.1/LICENSE"
+      ],
+      "sources": {
+        "tools/hadolint/2.15.1/LICENSE": "https://raw.githubusercontent.com/hadolint/hadolint/v2.15.1/LICENSE"
+      },
+      "version": "2.15.1"
+    },
+    "tool:minisign@0.12": {
+      "name": "minisign",
+      "notices": [
+        "tools/minisign/0.12/LICENSE"
+      ],
+      "sources": {
+        "tools/minisign/0.12/LICENSE": "https://raw.githubusercontent.com/jedisct1/minisign/0.12/LICENSE"
+      },
+      "version": "0.12"
+    },
+    "tool:mise@2026.9.18": {
+      "name": "mise",
+      "notices": [
+        "tools/mise/2026.9.18/LICENSE"
+      ],
+      "sources": {
+        "tools/mise/2026.9.18/LICENSE": "https://raw.githubusercontent.com/jdx/mise/v2026.9.18/LICENSE"
+      },
+      "version": "2026.9.18"
+    },
+    "tool:node@24.15.0": {
+      "name": "node",
+      "notices": [
+        "tools/node/24.15.0/LICENSE"
+      ],
+      "sources": {
+        "tools/node/24.15.0/LICENSE": "https://raw.githubusercontent.com/nodejs/node/v24.15.0/LICENSE"
+      },
+      "version": "24.15.0"
+    },
+    "tool:npm:@devcontainers/cli@0.88.0": {
+      "name": "npm:@devcontainers/cli",
+      "notices": [
+        "tools/npm%3A%40devcontainers%2Fcli/0.88.0/LICENSE.txt"
+      ],
+      "sources": {
+        "tools/npm%3A%40devcontainers%2Fcli/0.88.0/LICENSE.txt": "https://raw.githubusercontent.com/devcontainers/cli/v0.88.0/LICENSE.txt"
+      },
+      "version": "0.88.0"
+    },
+    "tool:npm:pnpm@10.20.0": {
+      "name": "npm:pnpm",
+      "notices": [
+        "tools/npm%3Apnpm/10.20.0/LICENSE"
+      ],
+      "sources": {
+        "tools/npm%3Apnpm/10.20.0/LICENSE": "https://raw.githubusercontent.com/pnpm/pnpm/v10.20.0/LICENSE"
+      },
+      "version": "10.20.0"
+    },
+    "tool:pipx@1.17.6": {
+      "name": "pipx",
+      "notices": [
+        "tools/pipx/1.17.6/LICENSE"
+      ],
+      "sources": {
+        "tools/pipx/1.17.6/LICENSE": "https://raw.githubusercontent.com/pypa/pipx/1.17.6/LICENSE"
+      },
+      "version": "1.17.6"
+    },
+    "tool:shellcheck@0.11.0": {
+      "name": "shellcheck",
+      "notices": [
+        "tools/shellcheck/0.11.0/LICENSE"
+      ],
+      "sources": {
+        "tools/shellcheck/0.11.0/LICENSE": "https://raw.githubusercontent.com/koalaman/shellcheck/v0.11.0/LICENSE"
+      },
+      "version": "0.11.0"
+    },
+    "tool:tombi@1.5.2": {
+      "name": "tombi",
+      "notices": [
+        "tools/tombi/1.5.2/LICENSE"
+      ],
+      "sources": {
+        "tools/tombi/1.5.2/LICENSE": "https://raw.githubusercontent.com/tombi-toml/tombi/v1.5.2/LICENSE"
+      },
+      "version": "1.5.2"
+    },
+    "tool:trivy@0.69.3": {
+      "name": "trivy",
+      "notices": [
+        "tools/trivy/0.69.3/LICENSE",
+        "tools/trivy/0.69.3/NOTICE"
+      ],
+      "sources": {
+        "tools/trivy/0.69.3/LICENSE": "https://raw.githubusercontent.com/aquasecurity/trivy/v0.69.3/LICENSE",
+        "tools/trivy/0.69.3/NOTICE": "https://raw.githubusercontent.com/aquasecurity/trivy/v0.69.3/NOTICE"
+      },
+      "version": "0.69.3"
+    },
+    "tool:uv@0.12.10": {
+      "name": "uv",
+      "notices": [
+        "tools/uv/0.12.10/LICENSE-APACHE",
+        "tools/uv/0.12.10/LICENSE-MIT"
+      ],
+      "sources": {
+        "tools/uv/0.12.10/LICENSE-APACHE": "https://raw.githubusercontent.com/astral-sh/uv/0.12.10/LICENSE-APACHE",
+        "tools/uv/0.12.10/LICENSE-MIT": "https://raw.githubusercontent.com/astral-sh/uv/0.12.10/LICENSE-MIT"
+      },
+      "version": "0.12.10"
+    },
+    "tool:yamllint@1.38.0": {
+      "name": "yamllint",
+      "notices": [
+        "tools/yamllint/1.38.0/LICENSE"
+      ],
+      "sources": {
+        "tools/yamllint/1.38.0/LICENSE": "https://raw.githubusercontent.com/adrienverge/yamllint/v1.38.0/LICENSE"
+      },
+      "version": "1.38.0"
+    },
+    "tool:zizmor@1.26.1": {
+      "name": "zizmor",
+      "notices": [
+        "tools/zizmor/1.26.1/LICENSE"
+      ],
+      "sources": {
+        "tools/zizmor/1.26.1/LICENSE": "https://raw.githubusercontent.com/woodruffw/zizmor/v1.26.1/LICENSE"
+      },
+      "version": "1.26.1"
+    }
+  }
+}

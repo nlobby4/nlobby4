@@ -1,0 +1,51 @@
+# --------------------------------------------------
+# Python script ignore rules.
+#
+# Exclude interpreter caches, local environments and generated outputs from
+# this folder, which the root allowlist otherwise includes. Keep Python source,
+# test fixtures and dependency metadata available to Git. Existing tracked
+# files are not affected.
+#
+# Patterns without a leading or middle / match names at any depth below this
+# file. A trailing / matches directories only. Leading / anchors an output
+# directory to this folder, leaving similarly named test fixtures available.
+#
+# For more information, see:
+# https://github.com/github/gitignore/blob/main/Python.gitignore
+# --------------------------------------------------
+
+# Interpreter caches and compiled extensions
+__pycache__/
+*.py[cod]
+*.so
+
+# Local virtual environments and tool caches
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.cache/
+
+# Build and test outputs
+/build/
+/dist/
+*.egg-info/
+*.egg
+*.whl
+.coverage
+.coverage.*
+/htmlcov/
+/coverage.xml
+
+# Runtime diagnostics
+*.log
+
+# Local environment settings, with documentation examples kept trackable
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template

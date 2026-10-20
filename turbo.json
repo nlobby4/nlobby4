@@ -1,0 +1,44 @@
+{
+  "$schema": "./schemas/turbo.schema.json",
+  "agentGuidance": false,
+  "cacheDir": ".cache/turbo",
+  "globalDependencies": [
+    ".editorconfig",
+    ".hadolint.yaml",
+    ".shellcheckrc",
+    ".yamllint.yaml",
+    "eslint.config.js",
+    "mise.lock",
+    "mise.toml",
+    "prettier.config.js",
+    "projects/.lintstagedrc.json"
+  ],
+  "noUpdateNotifier": true,
+  "remoteCache": {
+    "enabled": false
+  },
+  "tasks": {
+    "build": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "check": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "format:check": {
+      "cache": false
+    },
+    "lint": {
+      "cache": false
+    },
+    "test": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    }
+  },
+  "ui": "stream"
+}

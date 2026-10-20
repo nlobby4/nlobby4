@@ -1,0 +1,12 @@
+name: Invalid
+on: push
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      database:
+        image: evil.example/database:latest
+    steps:
+      - uses: actions/checkout@v4

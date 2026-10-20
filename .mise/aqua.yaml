@@ -1,0 +1,33 @@
+# Minisign 0.12 bundles x86_64 and aarch64 Linux executables in one signed archive.
+# The upstream aqua entry omits Linux ARM64 despite that published binary.
+# https://github.com/jedisct1/minisign/releases/tag/0.12
+packages:
+  - type: github_release
+    repo_owner: jedisct1
+    repo_name: minisign
+    description: Verify publisher-signed checksum manifests
+    asset: minisign-{{.Version}}-{{.OS}}.{{.Format}}
+    format: zip
+    files:
+      - name: minisign
+        src: minisign-{{.OS}}/{{.Arch}}/minisign
+    replacements:
+      darwin: macos
+      windows: win64
+      amd64: x86_64
+      arm64: aarch64
+    overrides:
+      - goos: linux
+        format: tar.gz
+      - goos: darwin
+        files:
+          - name: minisign
+    supported_envs:
+      - darwin/arm64
+      - windows/amd64
+      - linux/amd64
+      - linux/arm64
+    minisign:
+      type: github_release
+      asset: "{{.Asset}}.minisig"
+      public_key: RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3

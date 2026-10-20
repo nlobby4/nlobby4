@@ -1,0 +1,20 @@
+{
+  "$schema": "./schemas/knip.schema.json",
+  "ignoreBinaries": ["devcontainer", "python3", "tombi", "yamllint"],
+  "ignoreDependencies": ["@commitlint/cli", "editorconfig-checker"],
+  "treatConfigHintsAsErrors": true,
+  "workspaces": {
+    ".": {
+      "project": ["*.config.js"]
+    },
+    "scripts/node": {
+      "entry": [
+        "bin/*.js",
+        "lib/markdownlint/github-html.js",
+        "tests/*.js",
+        "tests/fixtures/crash-bootstrap-update.js"
+      ],
+      "project": ["bin/**/*.js", "lib/**/*.js", "tests/**/*.js"]
+    }
+  }
+}

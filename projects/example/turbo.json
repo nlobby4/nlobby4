@@ -1,0 +1,10 @@
+{
+    "$schema": "../../schemas/turbo.schema.json",
+    "extends": ["//"],
+    "tasks": {
+        "test": {
+            "cache": true,
+            "outputs": []
+        }
+    }
+}

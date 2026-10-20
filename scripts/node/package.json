@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schemas/package.schema.json",
+  "name": "@nlobby4/workflow-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Internal repository automation and terminal utilities",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:devcontainer:inputs": "node --test tests/devcontainer-inputs.test.js tests/update-mise-bootstrap.test.js tests/bootstrap-transaction.test.js tests/devcontainer-recover.test.js tests/devcontainer-build.test.js tests/update-debian-snapshot.test.js tests/renovate-config.test.js tests/devcontainer-update.test.js",
+    "test:devcontainer:user": "node --test tests/devcontainer-user.integration.js",
+    "test:git:ssh": "node --test tests/git-ssh.integration.js",
+    "test:markdown": "node --test tests/github-html.test.js"
+  },
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "16.0.3",
+    "ajv": "8.18.0",
+    "ajv-formats": "3.0.1",
+    "any-ascii": "0.3.3",
+    "jsonc-parser": "3.3.1",
+    "parse5": "8.0.1",
+    "string-width": "8.2.2",
+    "strip-ansi": "7.2.0",
+    "wrap-ansi": "10.0.0",
+    "yaml": "2.9.0"
+  },
+  "devDependencies": {
+    "markdown-it": "14.3.0"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

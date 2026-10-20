@@ -1,0 +1,19 @@
+# --------------------------------------------------
+# Example project ignore list.
+#
+# Source files are allowed by the organization repository. This project owns
+# its generated output, caches, dependencies and local environment files.
+# --------------------------------------------------
+
+node_modules/
+.cache/
+# Turbo owns package task logs in this native location
+.turbo/
+.generated/
+coverage/
+dist/
+*.log
+.env
+.env.*
+!.env.example
+!.env.template

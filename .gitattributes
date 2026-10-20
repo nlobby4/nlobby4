@@ -1,0 +1,410 @@
+# --------------------------------------------------
+# Generic attributes and settings for the repository.
+#
+# This file defines attributes for files in the repository,
+# such as line ending normalization, Git LFS settings,
+# and diff drivers for specific file types. It helps ensure
+# consistent handling of files across different platforms.
+#
+# A pattern that does not contain a slash matches by basename
+# in any directory.
+#
+# Projects can opt into Git LFS through their own .gitattributes.
+# Organization media belongs to the infrastructure media server and its
+# repository owns asset storage and publication rules, not this shell.
+#
+# Files can be ignored from GitHub source zip downloads
+# by using the `export-ignore` attribute.
+#
+# Contributors must have the Git LFS client installed before working with
+# LFS-tracked assets. The recommended setup path configures Git LFS and downloads
+# the repository's LFS objects:
+# mise run setup
+# Setup/doctor sets core.autocrlf=false locally so these attributes control
+# conversion instead of a host-wide setting. It does not rewrite existing files
+# or automatically renormalize the index. Explicit CRLF exceptions still apply.
+#
+# To configure only Git LFS without running repository setup:
+# git lfs install --local
+# git lfs pull
+#
+# For more information, see:
+# https://git-lfs.com/
+# https://git-scm.com/docs/gitattributes#_end_of_line_conversion
+# https://github.com/gitattributes/gitattributes
+# https://richienb.github.io/gitattributes-generator/
+# --------------------------------------------------
+
+# --------------------------------------------------
+# Common Rules
+# --------------------------------------------------
+
+# Auto detect text files and use LF in both Git and working-tree checkouts
+*          text=auto eol=lf
+
+# Text files where line endings should be preserved
+*.diff     -text
+*.patch    -text
+
+# Scripts
+*.bat      text eol=crlf
+*.cmd      text eol=crlf
+*.ps1      text eol=crlf
+*.bash     text eol=lf
+*.fish     text eol=lf
+*.ksh      text eol=lf
+*.sh       text eol=lf
+*.zsh      text eol=lf
+
+# Documents
+*.ansi     text eol=lf
+*.bibtex   text diff=bibtex
+*.doc      binary
+*.DOC      binary
+*.docx     binary
+*.DOCX     binary
+*.dot      binary
+*.DOT      binary
+*.pdf      binary
+*.PDF      binary
+*.rtf      text
+*.RTF      text
+*.md       text eol=lf diff=markdown
+*.mdx      text eol=lf diff=markdown
+*.tex      text diff=tex
+*.adoc     text
+*.textile  text
+*.mustache text
+*.csv      text eol=crlf
+*.tab      text
+*.tsv      text
+*.txt      text
+*.sql      text
+*.epub     binary
+*.sha256   text eol=lf
+
+# Graphics
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.tif      binary
+*.tiff     binary
+*.ico      binary
+*.eps      binary
+*.svg      text
+
+# Serialization
+*.json     text
+*.toml     text
+*.xml      text
+*.yaml     text
+*.yml      text
+
+# Archives
+*.7z       binary
+*.bz       binary
+*.bz2      binary
+*.bzip2    binary
+*.gz       binary
+*.lz       binary
+*.lzma     binary
+*.rar      binary
+*.tar      binary
+*.taz      binary
+*.tbz      binary
+*.tbz2     binary
+*.tgz      binary
+*.tlz      binary
+*.txz      binary
+*.xz       binary
+*.Z        binary
+*.zip      binary
+*.zst      binary
+
+# Ignore files
+*.*ignore  text eol=lf
+
+# --------------------------------------------------
+# Source and Tooling Rules
+# --------------------------------------------------
+
+# Scripts
+.husky/*          text eol=lf
+
+# Source code
+*.js              text eol=lf
+*.py              text eol=lf diff=python
+
+# Docker
+Dockerfile        text eol=lf
+*.Dockerfile      text eol=lf
+
+# RC files
+*.*rc             text eol=lf
+
+# Configs
+package.json      text eol=lf
+mise.lock         text eol=lf -diff
+mise.toml         text eol=lf
+.mise/locks/**/uv.lock text eol=lf -diff
+pnpm-lock.yaml    text eol=lf -diff
+
+# --------------------------------------------------
+# Custom Rules
+# --------------------------------------------------
+
+# Template customization for exports and source archives
+# TODO: Append "export-ignore" below if these files are not needed in exports
+.gitignore             text eol=lf
+.gitattributes         text eol=lf
+.gitkeep               text eol=lf
+.git-blame-ignore-revs text eol=lf
+.mailmap               text eol=lf
+.gitmessage            text eol=lf
+
+# Repository specific files
+.devcontainer/versions.env                  text eol=lf
+.editorconfig                               text eol=lf
+.github/CODEOWNERS                          text eol=lf
+scripts/node/lib/markdownlint/github-html.js text eol=lf
+AUTHORS                                     text eol=lf
+LICENSE                                     text eol=lf
+pnpm-workspace.yaml                         text eol=lf
+# TODO: Add more files as needed
+
+# Preserve collected upstream notices after generic file-type rules
+licenses/** -text
+licenses/README.md text eol=lf
+licenses/sources.json text eol=lf
+projects/**/licenses/** -text
+projects/**/licenses/README.md text eol=lf
+
+*.code-workspace text eol=lf
+
+
+# --------------------------------------------------
+# Generic attributes and settings for the repository.
+#
+# This file defines attributes for files in the repository,
+# such as line ending normalization, Git LFS settings,
+# and diff drivers for specific file types. It helps ensure
+# consistent handling of files across different platforms.
+#
+# A leading / anchors a pattern to the directory containing this file.
+# A trailing / does not apply attributes to a directory's descendants. Use /**
+# instead. Patterns without a leading or middle slash match names at any depth
+# below this file. The last matching rule wins per attribute within a file,
+# while a nested .gitattributes takes precedence for its subtree.
+#
+# Match a filename at any depth:    CODEOWNERS
+# Match a root-level file:         /CODEOWNERS
+# Match a specific path:           .github/CODEOWNERS
+# Match a directory's descendants: media/**
+# Match a file type at any depth:  *.json
+#
+# Negative patterns (!pattern) are not supported.
+#
+# Projects can opt into Git LFS through their own .gitattributes.
+# Organization media belongs to the infrastructure media server and its
+# repository owns asset storage and publication rules, not this shell.
+#
+# Files can be ignored from GitHub source zip downloads
+# by using the `export-ignore` attribute.
+#
+# Contributors must have the Git LFS client installed before working with
+# LFS-tracked assets. The recommended setup path configures Git LFS and downloads
+# the repository's LFS objects:
+# mise run setup
+# Setup/doctor sets core.autocrlf=false locally so these attributes control
+# conversion instead of a host-wide setting. It does not rewrite existing files
+# or automatically renormalize the index. Explicit CRLF exceptions still apply.
+#
+# To configure only Git LFS without running repository setup:
+# git lfs install --local
+# git lfs pull
+#
+# For more information, see:
+# https://git-lfs.com/
+# https://git-scm.com/docs/gitattributes#_end_of_line_conversion
+# https://github.com/gitattributes/gitattributes
+# https://richienb.github.io/gitattributes-generator/
+# --------------------------------------------------
+
+# --------------------------
+# Common Rules
+# --------------------------
+
+# Auto detect text files and perform LF normalization
+*           text=auto eol=lf
+
+# Text files where line endings should be preserved
+*.diff     -text
+*.patch    -text
+
+# Ignore files
+*.*ignore   text      eol=lf
+
+# Scripts
+*.ps1       text=auto eol=lf
+*.bat       text      eol=crlf
+*.cmd       text      eol=crlf
+*.bash      text      eol=lf
+*.fish      text      eol=lf
+*.ksh       text      eol=lf
+*.sh        text      eol=lf
+*.zsh       text      eol=lf
+
+# Serialization
+*.xml      text=auto
+*.json     text
+*.jsonc    text
+*.json5    text
+*.toml     text
+*.yaml     text
+*.yml      text
+
+# Documents
+*.txt      text=auto
+*.md       text       eol=lf diff=markdown
+*.mdx      text       eol=lf diff=markdown
+*.tex      text              diff=tex
+*.adoc     text
+*.textile  text
+*.mustache text
+*.tab      text
+*.tsv      text
+*.sql      text
+*.sha256   text       eol=lf
+*.ansi     text       eol=lf
+*.bib      text              diff=bibtex
+*.bibtex   text              diff=bibtex
+*.odt      binary
+*.ods      binary
+*.odp      binary
+*.epub     binary
+*.[rR][tT][fF]     binary
+*.[dD][oO][cC]     binary
+*.[dD][oO][cC][xX] binary
+*.[dD][oO][cC][mM] binary
+*.[pP][dD][fF]     binary
+*.[xX][lL][sS]     binary
+*.[xX][lL][sS][xX] binary
+*.[xX][lL][sS][mM] binary
+*.[pP][pP][tT]     binary
+*.[pP][pP][tT][xX] binary
+*.[pP][pP][tT][mM] binary
+
+# Graphics
+*.svg              text
+*.webp             binary
+*.avif             binary
+*.jxl              binary
+*.ico              binary
+*.eps              binary
+*.[pP][nN][gG]     binary
+*.[jJ][pP][gG]     binary
+*.[jJ][pP][eE][gG] binary
+*.[gG][iI][fF]     binary
+*.[tT][iI][fF]     binary
+*.[tT][iI][fF][fF] binary
+*.[bB][mM][pP]     binary
+*.[hH][eE][iI][cC] binary
+*.[hH][eE][iI][fF] binary
+
+# Design assets
+*.psd       binary
+*.ai        binary
+*.xcf       binary
+*.blend     binary
+
+# Fonts
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
+*.eot       binary
+
+# Audio
+*.mp3       binary
+*.wav       binary
+*.flac      binary
+*.ogg       binary
+*.opus      binary
+*.aac       binary
+*.m4a       binary
+
+# Video
+*.mp4       binary
+*.webm      binary
+*.mov       binary
+*.mkv       binary
+*.avi       binary
+*.mpeg      binary
+*.mpg       binary
+
+# Compiled files
+*.exe       binary
+*.dll       binary
+*.so        binary
+*.dylib     binary
+*.o         binary
+*.a         binary
+*.class     binary
+*.pyc       binary
+*.wasm      binary
+*.so.[0-9]* binary
+
+# Archives
+*.svgz      binary
+*.br        binary
+*.lz4       binary
+*.7z        binary
+*.bz        binary
+*.bz2       binary
+*.bzip2     binary
+*.gz        binary
+*.lz        binary
+*.lzma      binary
+*.rar       binary
+*.tar       binary
+*.taz       binary
+*.tbz       binary
+*.tbz2      binary
+*.tgz       binary
+*.tlz       binary
+*.txz       binary
+*.xz        binary
+*.Z         binary
+*.zip       binary
+*.zst       binary
+
+# --------------------------
+# Conditional Rules
+#
+# Formats whose handling depends on their contents or consumers.
+# Enable appropriate rules in project-level .gitattributes files,
+# or use specific paths below.
+# --------------------------
+
+# *.csv     text   eol=crlf
+# *.dot     binary
+# *.obj     binary
+# *.lib     binary
+
+# --------------------------
+# Custom Rules
+#
+# Define rules for specific files or directories here.
+# Keep general file-type rules in the sections above.
+# --------------------------
+
+# Exclude files from exports and source archives
+.gitignore               text eol=lf export-ignore
+.gitattributes           text eol=lf export-ignore
+.gitkeep                 text eol=lf export-ignore
+.git-blame-ignore-revs   text eol=lf export-ignore
+.mailmap                 text eol=lf export-ignore
+
+# Specific files not covered by the generic fallback
+# example-crlf.txt      -text

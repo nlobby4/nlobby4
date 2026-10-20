@@ -1,0 +1,7 @@
+{
+  "$schema": "./schemas/editorconfig-checker.schema.json",
+  "Disable": {
+    "MaxLineLength": true
+  },
+  "Exclude": ["^projects/", "^\\.local-work/", "(^|/)licenses/"]
+}

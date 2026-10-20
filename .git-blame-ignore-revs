@@ -1,0 +1,16 @@
+# --------------------------------------------------
+# Commit blame ignore list.
+#
+# Lists commits whose changes should be ignored by `git blame`,
+# such as formatting-only changes that obscure meaningful line history.
+#
+# The recommended setup path configures this file automatically:
+# mise run setup
+#
+# To configure the same Git setting manually without running repository setup,
+# use:
+# git config --local blame.ignoreRevsFile .git-blame-ignore-revs
+# --------------------------------------------------
+
+# <revision number>: [Type][Label] Description
+# commit SHA or Hash

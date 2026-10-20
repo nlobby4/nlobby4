@@ -1,0 +1,26 @@
+# --------------------------------------------------
+# ShellCheck configuration file.
+#
+# This file configures source resolution and enables an opinionated set of
+# optional correctness, portability, and consistency checks. ShellCheck uses
+# each script's shebang to select its shell dialect unless overridden.
+#
+# For more information please see:
+# https://www.shellcheck.net/wiki/Directive/#source-path
+# --------------------------------------------------
+
+# Search for sourced files relative to the script being analyzed
+source-path=SCRIPTDIR
+external-sources=true
+
+# Enable additional checks that are not enabled by default
+enable=add-default-case
+enable=avoid-negated-conditions
+enable=avoid-nullary-conditions
+enable=check-extra-masked-returns
+enable=check-set-e-suppressed
+enable=check-unassigned-uppercase
+enable=deprecate-which
+enable=quote-safe-variables
+enable=require-double-brackets
+enable=useless-use-of-cat

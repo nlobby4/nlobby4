@@ -1,0 +1,24 @@
+{
+  "devcontainer": {
+    "features": {
+      "docker.io/example/tool:latest": {}
+    },
+    "init": false,
+    "mounts": [
+      {
+        "source": "/var/run/docker.sock",
+        "target": "/var/run/docker.sock",
+        "type": "bind"
+      }
+    ],
+    "remoteUser": "root"
+  },
+  "lock": {
+    "features": {
+      "docker.io/example/other:1.0.0": {
+        "integrity": "sha256:wrong",
+        "resolved": "docker.io/example/other@sha256:right"
+      }
+    }
+  }
+}

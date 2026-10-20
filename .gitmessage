@@ -1,0 +1,40 @@
+chore(scope): describe the change (#ref)
+
+# why: what problem does this solve?
+# what: what changed
+
+# BREAKING CHANGE: describe the change and required migration
+
+# --------------------------------------------------
+# Git commit message template.
+#
+# Git uses this template for a new commit message written in an editor.
+# Replace the example type and subject above, then add a body or footer
+# if useful.  Keep the subject on the first line.
+# Lines beginning with # are guidance and are removed by Git's default
+# editor cleanup before saving the commit.
+# The commit-msg hook validates the message before the commit is created.
+# Commitlint rules are defined in commitlint.config.js.
+#
+# To configure only the commit template without running repository setup, use:
+# git config --local commit.template .gitmessage
+# --------------------------------------------------
+
+# --------------------------
+# Formatting Rules
+# --------------------------
+
+# format:           type(scope): subject, with optional scope and breaking !
+# header:           complete first line, warns when longer than 72 characters
+#                   no leading or trailing whitespace
+# subject:          required, rejects Sentence case, Start Case, PascalCase
+#                   and ALL CAPS
+#                   no trailing period, warns when longer than 50 characters
+# writing style:    prefer a lowercase start and imperative wording
+# type (required):  feat, fix, docs, style, refactor, perf, test, build,
+#                   ci, chore, revert, all lowercase
+# scope (optional): kebab-case, omit parentheses instead of leaving them empty
+# dependencies:     prefer deps or dev-deps as a scope, not an enforced rule
+# body/footer:      separate each from the preceding content with a blank line
+#                   warns above 100 characters per line, except lines with URLs
+# breaking change:  add ! before the colon or a BREAKING CHANGE footer, or both

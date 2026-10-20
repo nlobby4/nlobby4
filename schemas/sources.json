@@ -1,0 +1,43 @@
+{
+  "$schema": "./sources.schema.json",
+  "renovateVersion": "44.132.2",
+  "schemaStoreRevision": "738daaf8251a0384f0c44ebe37bf0018afe26b2b",
+  "schemas": [
+    { "file": "knip.schema.json", "package": "knip", "path": "schema.json" },
+    { "file": "turbo.schema.json", "package": "turbo", "path": "schema.json" },
+    {
+      "file": "markdownlint-cli2.schema.json",
+      "package": "markdownlint-cli2",
+      "path": "schema/markdownlint-cli2-config-schema.json"
+    },
+    {
+      "file": "editorconfig-checker.schema.json",
+      "url": "https://raw.githubusercontent.com/editorconfig-checker/editorconfig-checker/v{version}/.editorconfig-checker.schema.json",
+      "versionFrom": "editorconfig-checker"
+    },
+    {
+      "file": "zizmor.schema.json",
+      "url": "https://raw.githubusercontent.com/woodruffw/zizmor/v{version}/support/zizmor.schema.json",
+      "versionFrom": "zizmor"
+    },
+    {
+      "file": "renovate.schema.json",
+      "url": "https://unpkg.com/renovate@{version}/renovate-schema.json",
+      "versionFrom": "renovate"
+    },
+    {
+      "file": "renovate-global.schema.json",
+      "url": "https://unpkg.com/renovate@{version}/renovate-schema.json",
+      "versionFrom": "renovate",
+      "globalConfig": true
+    },
+    { "file": "github-workflow.schema.json", "store": "github-workflow.json" },
+    { "file": "github-action.schema.json", "store": "github-action.json" },
+    {
+      "file": "pull-request-labeler.schema.json",
+      "store": "pull-request-labeler.json"
+    },
+    { "file": "package.schema.json", "store": "package.json" },
+    { "file": "pnpm-workspace.schema.json", "store": "pnpm-workspace.json" }
+  ]
+}

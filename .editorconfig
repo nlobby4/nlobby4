@@ -1,0 +1,64 @@
+# --------------------------------------------------
+# EditorConfig configuration file.
+#
+# EditorConfig helps maintain consistent coding styles across editors and IDEs.
+# Matching sections are applied from top to bottom, so later settings override
+# earlier settings. A closer nested .editorconfig takes precedence over this
+# root configuration. Some editors may require a plugin for EditorConfig
+# support.
+#
+# For more information please see:
+# https://editorconfig.org/
+# --------------------------------------------------
+
+# Stop searching in parent directories
+root = true
+
+# Default settings for all files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+max_line_length = 80
+trim_trailing_whitespace = true
+
+# Settings for specific file types
+[*.{patch,diff}]
+charset = unset
+end_of_line = unset
+indent_style = unset
+indent_size = unset
+insert_final_newline = unset
+max_line_length = unset
+trim_trailing_whitespace = false
+
+[*.{bat,cmd,ps1,csv}]
+end_of_line = crlf
+
+[*.ansi]
+trim_trailing_whitespace = false
+
+[*.{md,mdx}]
+indent_size = unset
+trim_trailing_whitespace = false
+
+# Settings for specific directories
+[{licenses/**,projects/**/licenses/**}]
+charset = unset
+end_of_line = unset
+indent_style = unset
+indent_size = unset
+insert_final_newline = unset
+max_line_length = unset
+trim_trailing_whitespace = false
+
+[{**/.cache/**,**/.generated/**}]
+charset = unset
+end_of_line = unset
+indent_style = unset
+indent_size = unset
+insert_final_newline = unset
+max_line_length = unset
+trim_trailing_whitespace = unset

@@ -1,0 +1,15 @@
+# --------------------------------------------------
+# Example project task configuration.
+#
+# Reuse the organization's locked tools without adding tool declarations.
+# Tasks and their working directories remain owned by this project.
+# Add project-specific tool pins and native locks when the project needs them.
+# --------------------------------------------------
+
+[tasks.test]
+description = "Test the example project"
+run = "pnpm test"
+
+[tasks.check]
+description = "Validate the example project's own policy"
+run = "pnpm check"

@@ -1,0 +1,3 @@
+FROM mcr.microsoft.com/devcontainers/base:bookworm@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+USER vscode

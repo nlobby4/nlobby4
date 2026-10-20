@@ -1,0 +1,9 @@
+# --------------------------------------------------
+# Shared project traversal policy.
+#
+# The root allowlist permits project sources. Each project owns its denylist
+# in a local .gitignore. Do not add application-specific output rules here.
+# Independent repositories belong in submodules/ and retain their own rules.
+# --------------------------------------------------
+
+# No project-specific exclusions belong at this layer

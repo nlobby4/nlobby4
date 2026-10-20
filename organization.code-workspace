@@ -1,0 +1,46 @@
+{
+  "folders": [
+    { "name": "Organization setup", "path": "." },
+    { "name": "Example project", "path": "projects/example" },
+    {
+      "name": "Example npm package",
+      "path": "projects/packages/example-package",
+    },
+    {
+      "name": "Organization infrastructure",
+      "path": "projects/submodules/infrastructure",
+    },
+    {
+      "name": "Developer guide",
+      "path": "projects/submodules/developer-guide",
+    },
+    {
+      "name": "Organization GitHub profile",
+      "path": "projects/submodules/.github",
+    },
+    {
+      "name": "Private organization GitHub defaults",
+      "path": "projects/submodules/.github-private",
+    },
+    {
+      "name": "Package template",
+      "path": "projects/submodules/templates/package-template",
+    },
+    {
+      "name": "README template",
+      "path": "projects/submodules/templates/readme-template",
+    },
+    {
+      "name": "Wiki template",
+      "path": "projects/submodules/templates/wiki-template",
+    },
+  ],
+  "settings": {
+    "editor.detectIndentation": true,
+    "prettier.requireConfig": true,
+    "json.schemaDownload.enable": false,
+    "yaml.schemaStore.enable": false,
+    "yaml.kubernetesCRDStore.enable": false,
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+  },
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "./schemas/markdownlint-cli2.schema.json",
+  "config": {
+    "default": true,
+    "MD013": {
+      "code_blocks": false,
+      "tables": false
+    },
+    "MD033": false,
+    "MD034": false,
+    "MD041": {
+      "allow_preamble": true
+    },
+    "github-html": true
+  },
+  "customRules": ["./scripts/node/lib/markdownlint/github-html.js"],
+  "globs": ["**/*.md"],
+  "ignores": [
+    "licenses/npm/**",
+    "licenses/tools/**",
+    "licenses/schema/**",
+    ".local-work/**",
+    "projects/**",
+    "**/.generated/**",
+    "**/.cache/**",
+    "**/.git/**",
+    "**/CHANGELOG.md",
+    "**/dist/**",
+    "**/node_modules/**"
+  ]
+}

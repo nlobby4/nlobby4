@@ -1,0 +1,39 @@
+# --------------------------------------------------
+# Node script package ignore rules.
+#
+# Exclude dependencies and generated outputs from this package, which the root
+# allowlist otherwise includes. Keep source files, test fixtures, manifests and
+# lockfiles available to Git. Existing tracked files are not affected.
+#
+# Patterns without a leading or middle / match names at any depth below this
+# file. A trailing / matches directories only. Leading / anchors an output
+# directory to this package, leaving similarly named test fixtures available.
+#
+# For more information, see:
+# https://github.com/github/gitignore/blob/main/Node.gitignore
+# --------------------------------------------------
+
+# Installed dependencies and package-manager caches
+node_modules/
+.pnpm-store/
+.npm/
+.cache/
+
+# Build and test outputs
+/dist/
+/build/
+/coverage/
+.nyc_output/
+*.tsbuildinfo
+*.tgz
+
+# Runtime diagnostics
+*.log
+report.*.json
+
+# Local environment settings, with documentation examples kept trackable
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template

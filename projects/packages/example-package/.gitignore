@@ -1,0 +1,19 @@
+# --------------------------------------------------
+# Example package ignore list.
+#
+# This package owns its dependencies, generated artifacts and local state.
+# Source files are allowed through the organization repository's allowlist.
+# --------------------------------------------------
+
+node_modules/
+.cache/
+.generated/
+# Turbo requires this native task-log location
+.turbo/
+coverage/
+dist/
+*.log
+.env
+.env.*
+!.env.example
+!.env.template

@@ -1,0 +1,48 @@
+# --------------------------------------------------
+# Canonical development-container checksums.
+#
+# Records SHA-256 values for Linux artifacts downloaded directly by the
+# Dockerfile. A checksum identifies the expected contents of a downloaded file.
+# The build rejects the file if its contents do not match the committed hash.
+#
+# This is not a checksum list for every dependency in the container. Container
+# images and Features are pinned in Dockerfile and devcontainer-lock.json.
+# Tools installed through mise use mise.lock and its native lock sidecars.
+#
+# Entries use the canonical sha256sum text format: a 64-character digest, two
+# spaces, then the artifact filename.
+# --------------------------------------------------
+
+# --------------------------
+# Mise checksums
+#
+# These two entries pin the mise executable used to bootstrap tool installation.
+# The Dockerfile reads MISE_VERSION from versions.env and downloads the binary
+# for the target architecture. Docker calls these architectures amd64 and arm64,
+# while mise calls its release binaries linux-x64 and linux-arm64.
+#
+# The build checks the selected binary against its hash below before installing
+# it. It does not download replacement hashes or verify a publisher signature
+# during the build. This keeps the committed checksum as the build's reference.
+#
+# When updating mise, the bootstrap updater downloads the publisher's release
+# manifest and its .minisig signature. Minisign verifies that signature against
+# the publisher key pinned in scripts/node/bin/update-mise-bootstrap.js. This
+# proves that the manifest was signed by the holder of that key, rather than merely
+# trusting a checksum downloaded alongside the binary. Key changes need review.
+#
+# Run the following command from the repository root to update the bootstrap
+# version, both hashes, the minimum mise version and the CI bootstrap pin together.
+# Replace VERSION with the desired release number without a leading v.
+# bash scripts/linux/commands/devcontainer/devcontainer-update.sh --mise VERSION
+#
+# Keep these entries in the standard sha256sum format. The updater preserves
+# this explanation and updates the release-manifest URL along with the hashes.
+#
+# The publisher's checksum manifest for the committed release is available at
+# https://github.com/jdx/mise/releases/download/v2026.9.18/SHASUMS256.txt
+# --------------------------
+
+# https://github.com/jdx/mise/releases/download/v2026.9.18/SHASUMS256.txt
+d24fe0bf7e613824ad99f7b8dac3f2b381a37b9f75f84dd250855217095a8de4  mise-v2026.9.18-linux-x64
+2142433ae70decffc5fa24bd160e47931e33f55eb031d128beb97cbae634d168  mise-v2026.9.18-linux-arm64

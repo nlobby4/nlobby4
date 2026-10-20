@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# --------------------------------------------------
+# Pre-commit hook.
+#
+# Runs before Git creates a commit to validate only the files
+# staged for that commit.
+# Failures here block the commit.
+#
+# To skip this hook in exceptional cases:
+# git commit --no-verify
+# --------------------------------------------------
+
+# Reject secrets before formatters rewrite any staged content.
+pnpm run lint:secrets:staged
+
+# Run lint-staged using the staged-file tasks defined in package.json
+pnpm exec lint-staged

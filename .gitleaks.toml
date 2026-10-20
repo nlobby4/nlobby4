@@ -1,0 +1,16 @@
+# --------------------------------------------------
+# Gitleaks configuration file.
+#
+# Gitleaks looks for accidentally exposed passwords, API keys and other secrets
+# in files and Git history.
+#
+# The scan commands choose Git history or staged changes and redact findings.
+# This config does not make a Git scan include unstaged or untracked files.
+#
+# For more information please see:
+# https://github.com/gitleaks/gitleaks#configuration
+# --------------------------------------------------
+
+# Inherit maintained rules and standard false-positive exceptions
+[extend]
+useDefault = true

@@ -1,0 +1,12 @@
+# --------------------------------------------------
+# Example project YAML checks.
+#
+# Reuse the organization syntax checks and this project's Git denylist.
+# Indentation follows this project's EditorConfig and Prettier settings.
+# --------------------------------------------------
+extends: ../../.yamllint.yaml
+ignore-from-file: .gitignore
+
+rules:
+    indentation:
+        spaces: 4

@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=./schemas/pnpm-workspace.schema.json
+
+packages:
+  - scripts/node
+  - projects/*
+  - projects/packages/*
+  - "!projects/submodules/**"
+
+savePrefix: ""
+engineStrict: true
+strictPeerDependencies: true

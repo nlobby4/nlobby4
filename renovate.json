@@ -1,0 +1,192 @@
+{
+  "$schema": "./schemas/renovate.schema.json",
+  "automerge": false,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^schemas\/sources\\.json$/"],
+      "matchStrings": [
+        "\"schemaStoreRevision\":\\s*\"(?<currentDigest>[a-f0-9]{40})\""
+      ],
+      "currentValueTemplate": "master",
+      "depNameTemplate": "SchemaStore schemas",
+      "packageNameTemplate": "https://github.com/SchemaStore/schemastore",
+      "datasourceTemplate": "git-refs"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/^schemas\/sources\\.json$/"],
+      "matchStrings": ["\"renovateVersion\":\\s*\"(?<currentValue>[0-9.]+)\""],
+      "depNameTemplate": "renovate",
+      "datasourceTemplate": "npm"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.devcontainer/versions\\.env$/"
+      ],
+      "matchStrings": [
+        "MISE_VERSION=(?<currentValue>[0-9.]+)"
+      ],
+      "depNameTemplate": "jdx/mise",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.devcontainer/devcontainer\\.json$/"
+      ],
+      "matchStrings": [
+        "\"mobyBuildxVersion\":\\s*\"(?<currentValue>[0-9.]+)\""
+      ],
+      "depNameTemplate": "docker/buildx",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.devcontainer/devcontainer\\.json$/"
+      ],
+      "matchStrings": [
+        "\"dockerDashComposeVersion\":\\s*\"(?<currentValue>[0-9.]+)\""
+      ],
+      "depNameTemplate": "docker/compose",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    },
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/.devcontainer/devcontainer\\.json$/"
+      ],
+      "matchStrings": [
+        "\"ghcr\\.io\\/devcontainers\\/features\\/docker-in-docker:[^\"]+\":\\s*\\{[^}]*\"version\":\\s*\"(?<currentValue>[0-9.]+)\""
+      ],
+      "depNameTemplate": "moby/moby",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    }
+  ],
+  "enabledManagers": [
+    "mise",
+    "npm",
+    "github-actions",
+    "dockerfile",
+    "devcontainer",
+    "custom.regex"
+  ],
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "policy/fixtures/**",
+    "scripts/node/tests/fixtures/**"
+  ],
+  "ignoreScripts": true,
+  "labels": [
+    "dependencies"
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": [
+      "before 9am on Monday"
+    ]
+  },
+  "minimumReleaseAge": "7 days",
+  "packageRules": [
+    {
+      "matchDatasources": ["git-refs"],
+      "matchFileNames": ["schemas/sources.json"],
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["engines", "packageManager"],
+      "enabled": false
+    },
+    {
+      "matchManagers": [
+        "mise"
+      ],
+      "skipArtifactsUpdate": true
+    },
+    {
+      "matchManagers": [
+        "mise",
+        "dockerfile",
+        "devcontainer",
+        "custom.regex"
+      ],
+      "matchPackageNames": [
+        "!SchemaStore schemas",
+        "!https://github.com/SchemaStore/schemastore",
+        "!renovate"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest",
+        "pin"
+      ],
+      "groupName": "devcontainer toolchain",
+      "postUpgradeTasks": {
+        "commands": [
+          "bash scripts/linux/commands/devcontainer/devcontainer-update.sh --refresh",
+          "pnpm run schemas:update"
+        ]
+      }
+    },
+    {
+      "matchManagers": [
+        "npm"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "JavaScript tooling"
+    },
+    {
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest",
+        "pin"
+      ],
+      "groupName": "GitHub Actions"
+    }
+  ],
+  "pinDigests": true,
+  "postUpgradeTasks": {
+    "commands": [
+      "pnpm run schemas:update"
+    ],
+    "executionMode": "branch",
+    "fileFilters": [
+      ".devcontainer/versions.env",
+      ".devcontainer/checksums.sha256",
+      ".devcontainer/devcontainer-lock.json",
+      ".github/actions/setup-node-deps/action.yml",
+      "mise.toml",
+      "mise.lock",
+      ".mise/locks/**",
+      "pnpm-lock.yaml",
+      "package.json",
+      "schemas/**",
+      "licenses/**",
+      "projects/**/licenses/**"
+    ]
+  },
+  "prConcurrentLimit": 5,
+  "schedule": [
+    "before 9am on Monday"
+  ],
+  "timezone": "Europe/Berlin"
+}

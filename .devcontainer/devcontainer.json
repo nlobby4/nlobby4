@@ -1,0 +1,61 @@
+{
+  "$schema": "../schemas/devcontainer.schema.json",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "..",
+    "args": {
+      "USER": "nlobby4"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-containers",
+        "github.vscode-github-actions",
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "joshbolduc.commitlint",
+        "timonwong.shellcheck",
+        "zizmor.zizmor-vscode",
+        "hverlin.mise-vscode",
+        "webpro.vscode-knip",
+        "redhat.vscode-yaml",
+        "tombi-toml.tombi",
+        "exiasr.hadolint",
+        "tsandall.opa",
+        "jq-syntax-highlighting.jq-syntax-highlighting",
+        "luggage66.AWK",
+        "Vercel.turbo-vsc"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:4.1.1": {
+      "dockerDashComposeVersion": "2.40.3",
+      "installDockerBuildx": false,
+      "installDockerComposeSwitch": false,
+      "moby": true,
+      "mobyBuildxVersion": "0.37.0",
+      "version": "29.6.0"
+    }
+  },
+  "init": true,
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolderBasename}-pnpm-v10-store-${devcontainerId}",
+      "target": "/home/nlobby4/.local/share/pnpm/store",
+      "type": "volume"
+    }
+  ],
+  "name": "nlobby4 Dev Container",
+  "postCreateCommand": "bash scripts/linux/commands/devcontainer/recover-bootstrap.sh && mise trust && mise run setup",
+  "postStartCommand": "bash scripts/linux/commands/devcontainer/init.sh",
+  "remoteEnv": {
+    "NPM_CONFIG_STORE_DIR": "/home/nlobby4/.local/share/pnpm/store"
+  },
+  "remoteUser": "nlobby4",
+  "shutdownAction": "stopContainer",
+  "updateRemoteUserUID": true,
+  "waitFor": "postCreateCommand"
+}

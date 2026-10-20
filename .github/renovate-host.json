@@ -1,0 +1,18 @@
+{
+  "$schema": "../schemas/renovate-global.schema.json",
+  "allowScripts": false,
+  "allowedCommands": [
+    "^bash scripts\\/linux\\/commands\\/devcontainer\\/devcontainer-update\\.sh --refresh$",
+    "^pnpm run schemas:update$"
+  ],
+  "allowedEnv": [],
+  "allowedUnsafeExecutions": [
+    "mise"
+  ],
+  "autodiscover": false,
+  "binarySource": "global",
+  "exposeAllEnv": false,
+  "onboarding": false,
+  "platform": "github",
+  "requireConfig": "required"
+}

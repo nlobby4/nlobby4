@@ -1,0 +1,116 @@
+# --------------------------------------------------
+# Development-container CI workflow.
+#
+# Builds the complete Dev Container configuration without cache on native
+# amd64 and arm64 runners. A least-privilege job scans the source-built image.
+# No images are published; scans and SBOMs use the local source-built image.
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../../schemas/github-workflow.schema.json
+
+name: CI Dev Container
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: 23 4 * * 1
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  smoke:
+    name: smoke (${{ matrix.platform }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-24.04
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm npm:@devcontainers/cli uv
+
+      - name: Validate Dev Container inputs
+        run: pnpm run lint:devcontainer
+
+      - name: Check frozen mise declarations, artifacts and version drift
+        run: bash scripts/linux/commands/devcontainer/devcontainer-update.sh --check
+
+      - name: Test build-input rejection and drift boundaries
+        run: pnpm run test:devcontainer:inputs
+
+      - name: Run Dockerfile build checks
+        run: pnpm run ci:buildkit-check
+
+      - name: Test base-image account variations
+        run: pnpm run test:devcontainer:user
+
+      - name: Confirm native architecture
+        env:
+          EXPECTED_PLATFORM: ${{ matrix.platform }}
+        run: pnpm run ci:confirm-architecture
+
+      - name: Clean build and smoke test
+        env:
+          DEVCONTAINER_SMOKE_SOURCE: head
+        run: pnpm run test:devcontainer
+
+  supply-chain:
+    name: vulnerability and SBOM
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+        with:
+          install-args: node npm:pnpm npm:@devcontainers/cli trivy
+
+      - name: Build complete Dev Container image
+        env:
+          IMAGE: nlobby4-devcontainer:${{ github.sha }}
+        run: pnpm run ci:build-source-image
+
+      - name: Scan image and generate SPDX JSON SBOM
+        env:
+          DEVCONTAINER_IMAGE: nlobby4-devcontainer:${{ github.sha }}
+          DEVCONTAINER_SCAN_BUILD: false
+          DEVCONTAINER_SBOM_OUTPUT: .generated/devcontainer.spdx.json
+        run: pnpm run devcontainer:scan
+
+      - name: Upload SBOM
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          if-no-files-found: error
+          name: devcontainer-supply-chain-${{ github.sha }}
+          path: |
+            .generated/devcontainer.spdx.json
+          retention-days: 14

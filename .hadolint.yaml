@@ -1,0 +1,16 @@
+# --------------------------------------------------
+# Hadolint configuration file.
+#
+# Treats Dockerfile warnings and errors as lint failures. Ordinary projects
+# inherit these defaults unless they provide their own configuration. Registry
+# restrictions are scoped to the devcontainer task, not application images.
+# Keep rule-specific exceptions next to the affected instruction.
+#
+# For more information please see:
+# https://github.com/hadolint/hadolint#configure
+# --------------------------------------------------
+
+failure-threshold: warning
+
+# Rule-specific exceptions belong next to the affected Dockerfile instruction;
+# there are intentionally no repository-wide ignored rules.

@@ -1,0 +1,16 @@
+# --------------------------------------------------
+# CODEOWNERS configuration file.
+#
+# This file tells GitHub who owns what parts of the codebase.
+# Owners (users or teams) listed here will be automatically requested
+# for reviews on pull requests affecting the specified paths.
+#
+# This file is intended for organization members only.
+#
+# For more information, see:
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# --------------------------------------------------
+
+# Global owner, acts as fallback for everything not specified below
+# TODO: Update people or teams to their respective sections
+* @exquz3me

@@ -1,0 +1,39 @@
+# --------------------------------------------------
+# Allowlist Docker ignore file.
+#
+# This file uses a deny-by-default approach so all files
+# are excluded from the Docker build context unless explicitly
+# allowed via exceptions.
+#
+# This keeps the development container build context predictable. The
+# Dockerfile receives only explicitly allowed build-time inputs, while the
+# complete repository is mounted later by the devcontainer runtime.
+#
+# Add files and paths to the Docker build context by adding exceptions.
+# Keep the context focused on files that are needed by Dockerfile COPY
+# instructions or build-time tooling.
+#
+# Add a specific file:                      !path/to/file
+# Add all files in a directory:             !path/to/directory/**
+# Add a filename at any depth:              !**/filename
+# --------------------------------------------------
+
+# Deny by default
+*
+
+# Container
+!/.devcontainer/Dockerfile
+!/.devcontainer/devcontainer.json
+!/.devcontainer/devcontainer-lock.json
+!/.devcontainer/versions.env
+!/.devcontainer/checksums.sha256
+!/.dockerignore
+
+# Toolchain
+!/.mise/aqua.yaml
+!/.mise/locks/**
+!/mise.lock
+!/mise.toml
+
+# Scripts
+!/scripts/python/devcontainer-state.py

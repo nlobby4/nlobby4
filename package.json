@@ -1,0 +1,141 @@
+{
+  "$schema": "./schemas/package.schema.json",
+  "name": "@nlobby4/nlobby4",
+  "version": "1.0.0",
+  "private": true,
+  "description": "nlobby4 organization monorepo and shared development environment",
+  "type": "module",
+  "workspaces": [
+    "scripts/node",
+    "projects/*",
+    "projects/packages/*",
+    "!projects/submodules/**"
+  ],
+  "scripts": {
+    "actions:local": "bash scripts/linux/commands/tasks/actions/local.sh",
+    "actions:local:list": "bash scripts/linux/commands/tasks/actions/local-list.sh",
+    "actions:test": "bash scripts/linux/commands/tasks/actions/test.sh",
+    "actions:test:list": "bash scripts/linux/commands/tasks/actions/test-list.sh",
+    "audit": "bash scripts/linux/commands/tasks/deps/audit.sh",
+    "audit:dev": "bash scripts/linux/commands/tasks/deps/audit-dev.sh",
+    "build": "echo \"No build script specified\" && exit 0",
+    "check": "bash scripts/linux/commands/tasks/check.sh",
+    "ci:build-source-image": "bash scripts/linux/ci/build-source-image.sh",
+    "ci:buildkit-check": "bash scripts/linux/ci/buildkit-check.sh",
+    "ci:confirm-architecture": "bash scripts/linux/ci/confirm-architecture.sh",
+    "ci:install-cmark-gfm": "bash scripts/linux/ci/install-cmark-gfm.sh",
+    "ci:test-cache-key": "bash scripts/linux/ci/test-cache-key.sh",
+    "commit": "XDG_CACHE_HOME=.cache git-cz",
+    "deps:check": "bash scripts/linux/commands/tasks/deps/check.sh",
+    "deps:unused": "bash scripts/linux/commands/tasks/deps/unused.sh",
+    "devcontainer:clear": "bash scripts/linux/commands/devcontainer/devcontainer-clear.sh",
+    "devcontainer:doctor": "devcontainer exec --workspace-folder . mise run doctor",
+    "devcontainer:health": "devcontainer exec --workspace-folder . mise run health",
+    "devcontainer:rebuild": "devcontainer up --workspace-folder . --remove-existing-container --build-no-cache --frozen-lockfile",
+    "devcontainer:recover": "bash scripts/linux/commands/devcontainer/devcontainer-recover.sh",
+    "devcontainer:scan": "bash scripts/linux/commands/devcontainer/devcontainer-scan.sh",
+    "devcontainer:shell": "devcontainer exec --workspace-folder . bash",
+    "devcontainer:up": "devcontainer up --workspace-folder . --frozen-lockfile",
+    "devcontainer:update": "bash scripts/linux/commands/devcontainer/devcontainer-update.sh",
+    "docs:preview:github": "bash scripts/linux/commands/docs/preview-github.sh",
+    "doctor": "bash scripts/linux/commands/repository/doctor.sh",
+    "format": "bash scripts/linux/commands/tasks/format.sh",
+    "format:check": "bash scripts/linux/commands/tasks/format/check.sh",
+    "health": "bash scripts/linux/commands/repository/health.sh",
+    "licenses:check": "python3 scripts/python/collect-licenses.py --check --all-projects",
+    "licenses:update": "python3 scripts/python/collect-licenses.py --all-projects",
+    "lint": "bash scripts/linux/commands/tasks/lint.sh",
+    "lint:actions": "bash scripts/linux/commands/tasks/lint/actions.sh",
+    "lint:actions:security": "bash scripts/linux/commands/tasks/lint/actions-security.sh",
+    "lint:commit": "bash scripts/linux/commands/tasks/lint/commit.sh",
+    "lint:devcontainer": "node scripts/node/bin/validate-devcontainer-inputs.js",
+    "lint:dockerfile": "bash scripts/linux/commands/tasks/lint/dockerfile.sh",
+    "lint:editorconfig": "node scripts/node/bin/workspace-check.js lint:editorconfig",
+    "lint:js": "node scripts/node/bin/workspace-check.js lint:js",
+    "lint:md": "bash scripts/linux/commands/tasks/lint/md.sh",
+    "lint:md:fix": "bash scripts/linux/commands/tasks/lint/md-fix.sh",
+    "lint:md:gfm": "bash scripts/linux/commands/tasks/lint/md-gfm.sh",
+    "lint:policy": "bash scripts/linux/commands/tasks/lint/policy.sh",
+    "lint:schema": "bash scripts/linux/commands/tasks/lint/schema.sh",
+    "lint:secrets": "bash scripts/linux/commands/tasks/lint/secrets.sh",
+    "lint:secrets:staged": "bash scripts/linux/commands/tasks/lint/secrets-staged.sh",
+    "lint:shell": "bash scripts/linux/commands/tasks/lint/shell.sh",
+    "lint:spell": "bash scripts/linux/commands/tasks/lint/spell.sh",
+    "lint:toml": "bash scripts/linux/commands/tasks/lint/toml.sh",
+    "lint:yaml": "node scripts/node/bin/workspace-check.js lint:yaml",
+    "prepare": "husky",
+    "projects:build": "turbo run build --filter=\"./projects/**\"",
+    "projects:check": "turbo run check --filter=\"./projects/**\"",
+    "projects:dev": "turbo run dev --filter=\"./projects/**\"",
+    "projects:test": "turbo run test --filter=\"./projects/**\"",
+    "schemas:check": "node scripts/node/bin/update-schemas.js --check",
+    "schemas:update": "pnpm install --frozen-lockfile --ignore-scripts --ignore-pnpmfile && node scripts/node/bin/update-schemas.js && pnpm run licenses:update",
+    "test": "pnpm run test:scripts",
+    "test:devcontainer": "bash scripts/linux/commands/devcontainer/smoke.sh",
+    "test:devcontainer:inputs": "pnpm --filter @nlobby4/workflow-scripts test:devcontainer:inputs && python3 scripts/python/devcontainer-state-test.py && python3 scripts/python/devcontainer-capacity-test.py",
+    "test:devcontainer:user": "pnpm --filter @nlobby4/workflow-scripts test:devcontainer:user",
+    "test:git:ssh": "pnpm --filter @nlobby4/workflow-scripts test:git:ssh",
+    "test:licenses": "python3 scripts/python/collect-licenses-test.py",
+    "test:markdown": "pnpm --filter @nlobby4/workflow-scripts test:markdown",
+    "test:projects": "node --test scripts/node/tests/project-boundaries.test.js",
+    "test:projects:tasks": "node --test scripts/node/tests/project-tasks.test.js",
+    "test:scripts": "pnpm --filter @nlobby4/workflow-scripts test"
+  },
+  "lint-staged": {
+    "*.md": [
+      "prettier --write",
+      "markdownlint-cli2 --config .markdownlint-cli2.json --fix --no-globs"
+    ],
+    "*.{json,sh}": [
+      "prettier --write"
+    ],
+    "{*.config.js,scripts/node/**/*.{js,mjs,cjs}}": [
+      "prettier --write",
+      "eslint --fix --max-warnings 0"
+    ],
+    "mise.toml": [
+      "tombi lint"
+    ],
+    "*.{yaml,yml}": [
+      "prettier --write",
+      "yamllint --strict"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "20.5.0",
+    "@commitlint/config-conventional": "20.5.0",
+    "@commitlint/cz-commitlint": "20.5.1",
+    "@commitlint/format": "20.5.0",
+    "@commitlint/types": "20.5.0",
+    "@eslint/js": "10.0.1",
+    "@prettier/plugin-oxc": "0.2.2",
+    "commitizen": "4.3.1",
+    "cspell": "10.2.1",
+    "editorconfig-checker": "7.0.0",
+    "eslint": "10.10.0",
+    "globals": "17.12.0",
+    "husky": "9.1.7",
+    "knip": "6.5.0",
+    "lint-staged": "16.4.0",
+    "markdownlint-cli2": "0.23.2",
+    "prettier": "3.9.6",
+    "prettier-plugin-jsdoc": "1.8.1",
+    "prettier-plugin-multiline-arrays": "4.1.11",
+    "prettier-plugin-organize-imports": "4.3.0",
+    "prettier-plugin-packagejson": "3.0.2",
+    "prettier-plugin-sh": "0.19.0",
+    "prettier-plugin-sort-json": "4.2.0",
+    "prettier-plugin-yaml": "1.3.0",
+    "turbo": "2.11.7"
+  },
+  "packageManager": "pnpm@10.20.0",
+  "engines": {
+    "node": ">=24.15.0 <25",
+    "pnpm": ">=10"
+  }
+}

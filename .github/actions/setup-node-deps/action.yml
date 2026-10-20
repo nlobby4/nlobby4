@@ -1,0 +1,49 @@
+# --------------------------------------------------
+# Setup Node.js dependencies.
+#
+# Installs the requested tool versions from mise.toml, restores pnpm's content-
+# addressable store, installs locked dependencies, and saves the store on miss.
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../../../schemas/github-action.schema.json
+
+name: Setup repository dependencies
+description: Install requested mise tools and pnpm dependencies with store reuse.
+
+inputs:
+  install-args:
+    description: Space-separated mise tools to install from the repository lockfile.
+    required: false
+    default: node npm:pnpm
+
+runs:
+  using: composite
+  steps:
+    - uses: jdx/mise-action@9e7f7633ff6f6d6048a9418a68d48f288f50eb14
+      env:
+        MISE_LOCKED: "1"
+      with:
+        install_args: ${{ inputs.install-args }}
+        version: 2026.9.18
+
+    - name: Restore pnpm store
+      id: pnpm-store-restore
+      uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+      with:
+        path: ~/.local/share/pnpm/store
+        key: >-
+          pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'mise.toml', 'mise.lock', '.mise/locks/**') }}
+        restore-keys: |
+          pnpm-${{ runner.os }}-${{ runner.arch }}-
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile --ignore-scripts --silent
+
+    - name: Save pnpm store
+      if: steps.pnpm-store-restore.outputs.cache-hit != 'true'
+      uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+      with:
+        path: ~/.local/share/pnpm/store
+        key: >-
+          pnpm-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'mise.toml', 'mise.lock', '.mise/locks/**') }}

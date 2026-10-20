@@ -1,0 +1,8 @@
+# --------------------------------------------------
+# Independent repository boundary.
+#
+# Submodules are recorded as Git links, not copied source trees. Their own
+# repositories control generated files, credentials and runtime data.
+# --------------------------------------------------
+
+# No blanket exclusion is needed for registered submodules.

@@ -1,0 +1,88 @@
+{
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "[git-commit]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false,
+    "editor.rulers": [72, 100],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 100,
+    "workbench.editor.restoreViewState": false
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  },
+  "[markdown]": {
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.wordWrap": "off",
+    "cSpell.advanced.feature.useReferenceProviderRemove": "/^#+\\s/"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tombi-toml.tombi"
+  },
+  "cSpell.advanced.feature.useReferenceProviderWithRename": true,
+  "cSpell.enabledFileTypes": {
+    "*": false,
+    "git-commit": true,
+    "markdown": true
+  },
+  "cSpell.fixSpellingWithRenameProvider": true,
+  "cSpell.language": "en-US",
+  "cSpell.useLocallyInstalledCSpellDictionaries": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.detectIndentation": false,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnType": false,
+  "editor.rulers": [80],
+  "files.associations": {
+    "*.*ignore": "ignore",
+    "*.sha256": "properties",
+    ".gitmessage": "git-commit",
+    ".mailmap": "properties",
+    "AUTHORS": "properties",
+    "CODEOWNERS": "properties",
+    "LICENSE": "plaintext",
+    "mise.toml": "toml",
+    "**/.husky/*": "shellscript",
+    "**/spellcheck/*.txt": "properties"
+  },
+  "files.autoSave": "off",
+  "json.schemaDownload.enable": false,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "/package.json",
+        "/scripts/node/package.json",
+        "/projects/*/package.json",
+        "/projects/packages/*/package.json"
+      ],
+      "url": "./schemas/package.schema.json"
+    },
+    {
+      "fileMatch": ["/.github/renovate-host.json"],
+      "url": "./schemas/renovate-global.schema.json"
+    }
+  ],
+  "knip.configFilePath": "knip.json",
+  "knip.requireConfig": true,
+  "prettier.requireConfig": true,
+  "search.exclude": {
+    "**/*.lock": true,
+    "**/.cache": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.husky/_/**": true,
+    "**/*-lock.*": true
+  },
+  "shellcheck.executablePath": "shellcheck",
+  "yaml.kubernetesCRDStore.enable": false,
+  "yaml.schemaStore.enable": false,
+  "yaml.schemas": {
+    "./schemas/pnpm-workspace.schema.json": ["/pnpm-workspace.yaml"]
+  }
+}

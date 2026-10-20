@@ -1,0 +1,48 @@
+# --------------------------------------------------
+# CI Test workflow.
+#
+# Handles code quality checks for pull requests to release branches.
+# Uses pull_request to safely execute untrusted code
+# from forks without elevated privileges.
+#
+# Jobs install tool versions from mise.toml and mise.lock so tests use the same
+# runtime versions as the development container and local users.
+#
+# For more information please see:
+# https://docs.github.com/en/actions/writing-workflows
+# --------------------------------------------------
+
+# yaml-language-server: $schema=../../schemas/github-workflow.schema.json
+
+name: CI Test
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+# Deny all by default, jobs declare their own permissions as needed
+permissions: {}
+
+jobs:
+  # --------------------------------------------------
+  # Test - runs code quality checks.
+  # --------------------------------------------------
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - uses: ./.github/actions/setup-node-deps
+
+      - name: Test
+        run: pnpm run test

@@ -1,0 +1,10 @@
+node_modules/
+.cache/
+.turbo/
+.generated/
+coverage/
+dist/
+pnpm-lock.yaml
+.mise/locks/
+licenses/**
+!licenses/README.md

@@ -1,0 +1,6 @@
+# Trivy exceptions must be scoped and must expire. Keep these arrays empty
+# unless a reviewed exception includes an id, paths or purls, and expired_at.
+vulnerabilities: []
+misconfigurations: []
+secrets: []
+licenses: []
