@@ -25,7 +25,7 @@
     "yaml": "2.9.0"
   },
   "devDependencies": {
-    "markdown-it": "14.3.0"
+    "markdown-it": "14.3.1"
   },
   "engines": {
     "node": ">=24"
